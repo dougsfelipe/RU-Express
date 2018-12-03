@@ -32,7 +32,11 @@ export class AppComponent {
     if(!this.cadastroPessoa.cadastrar(p)){
       this.usuarioJaCadastrado=true;
     }
-
+      this.pessoa.cpf="";
+      this.pessoa.senha="";
+      this.pessoa.nome="";
+      this.pessoa.telefone="";
+      this.pessoa.email="";
   }
   onMove(){
     this.usuarioJaCadastrado=false;

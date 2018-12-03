@@ -3,7 +3,8 @@
 <body>
 
   <nav class="topnav">
-      <a class="topnavitem" >Logado<br>Usuario X</a>
+    <a class="topnavitem">Logado
+      <br>Usuario X</a>
     <img alt="Logo RU" src="assets/images/Logo.gif" class="navLogo">
 
     <a routerLink="/cardapio">Cardapio</a>
@@ -15,48 +16,67 @@
 
   <div class="TelaLogin" *ngIf="!loged && !tela">
     <form action="login" class="formulario">
-    <tr>
-        
-        <input [(ngModel)]="pessoa.cpf"  placeholder="Digite seu CPF">
-    </tr>
-    <br>
-    <tr>
-        
-    </tr>
-   
-      <button (click)="login()">Entrar</button>
-      <BR>
-        <button (click)="changeWindow()">Cadastrar</button>
-
-        
-  </form>
-  </div>
-  <div class="TelaCadastro" *ngIf="!loged&&tela">
-<tr>
-  <td>nome*</td>
-  <td><input [(ngModel)]="pessoa.nome"></td>
-</tr>
-<tr>
-    <td>cpf*</td>
-    <td><input [(ngModel)]="pessoa.cpf"></td>
-  </tr>
-  <tr>
-      <td>senha*</td>
-      <td><input [(ngModel)]="pessoa.senha"></td>
-    </tr>
-    <tr>
-        <td>telefone</td>
-        <td><input [(ngModel)]="pessoa.telefone"></td>
+      <tr>
+        <input [(ngModel)]="pessoa.cpf" placeholder="Digite seu CPF">
       </tr>
       <tr>
-          <td>email</td>
-          <td><input [(ngModel)]="pessoa.email"></td>
-        </tr>
-        <tr>
-        <td><button (click)="cadastrar(pessoa)">Cadastrar</button><td>
-        <td><button (click)="changeWindow()">voltar</button></td>
-        </tr>
-        <td *ngIf="usuariaJaCadastrado">Não foi possivel realizar o cadastro</td>
+        <input [(ngModel)]="pessoa.senha" placeholder="Digite sua Senha" type="password">
+      </tr>
+
+      <button (click)="login()">Entrar</button>
+      <BR>
+      <button (click)="changeWindow()">Cadastrar</button>
+    </form>
+  </div>
+  <div class="TelaCadastro" *ngIf="!loged&&tela">
+
+
+    <form action="cadastrar" class="formulario">
+       
+      <tr>
+
+
+        <input [(ngModel)]="pessoa.nome" placeholder="Digite o nome*">
+
+      </tr>
+      <tr>
+
+
+        <input [(ngModel)]="pessoa.cpf" placeholder="Digite o CPF*">
+
+      </tr>
+      <tr>
+
+
+        <input [(ngModel)]="pessoa.senha" placeholder="Digite a sua senha*" type="Password">
+
+      </tr>
+      <tr>
+
+
+        <input [(ngModel)]="pessoa.telefone" placeholder="Digite o seu telefone*">
+
+      </tr>
+      <tr>
+
+
+        <input [(ngModel)]="pessoa.email" placeholder="Digite o seu E-Mail*">
+
+      </tr>
+      <tr>
+        <br>
+          *Campos Obrigatorios
+      </tr>
+      
+
+      <button (click)="cadastrar(pessoa)">Cadastrar</button>
+
+      <br>
+      <button (click)="changeWindow()">Voltar</button>
+
+      
+    </form>
+    <td *ngIf="usuariaJaCadastrado">Não foi possivel realizar o cadastro</td>
   </div>
   <router-outlet *ngIf="loged"></router-outlet>
 </body>
