@@ -6,14 +6,14 @@
       <a class="topnavitem" >Logado<br>Usuario X</a>
     <img alt="Logo RU" src="assets/images/Logo.gif" class="navLogo">
 
-    <a class="topnavitem"  name ="Cardapio" href="cardapio.component">Cardapio</a>
-    <a class="topnavitem" href="#news">Solicitacao</a>
-    <a class="topnavitem" href="#contact">Carteira</a>
-    <a class="topnavitem" href="#about">Suporte</a>
+    <a routerLink="/cardapio">Cardapio</a>
+    <a routerLink="/solicitacao">Solicitacao</a>
+    <a routerLink="/carteira">Carteira</a>
+    <a routerLink="/suporte">Suporte</a>
     
   </nav>
 
-  <div class="TelaLogin" *ngIf="!loged && tela">
+  <div class="TelaLogin" *ngIf="!loged && !tela">
     <form action="login" class="formulario">
     <tr>
         
@@ -31,7 +31,7 @@
         
   </form>
   </div>
-  <div class="TelaCadastro" *ngIf="!loged&&!tela">
+  <div class="TelaCadastro" *ngIf="!loged&&tela">
 <tr>
   <td>nome*</td>
   <td><input [(ngModel)]="pessoa.nome"></td>
@@ -58,6 +58,7 @@
         </tr>
         <td *ngIf="usuariaJaCadastrado">Não foi possivel realizar o cadastro</td>
   </div>
+  <router-outlet *ngIf="loged"></router-outlet>
 </body>
 
 
