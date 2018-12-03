@@ -6,7 +6,6 @@
     <a class="topnavitem">Logado
       <br>Usuario X</a>
     <img alt="Logo RU" src="assets/images/Logo.gif" class="navLogo">
-
     <a class="topnavitem" name="Cardapio" href="cardapio.component">Cardapio</a>
     <a class="topnavitem" href="#news">Solicitacao</a>
     <a class="topnavitem" href="#contact">Carteira</a>
@@ -17,10 +16,10 @@
   <div class="TelaLogin" *ngIf="!loged && !tela">
     <form action="login" class="formulario">
       <tr>
-        <input [(ngModel)]="pessoa.cpf" placeholder="Digite seu CPF">
+        <input [(ngModel)]="pessoa.cpf" placeholder="Digite seu CPF" name="LoginCPF">
       </tr>
       <tr>
-        <input [(ngModel)]="pessoa.senha" placeholder="Digite sua Senha" type="password">
+        <input [(ngModel)]="pessoa.senha" placeholder="Digite sua Senha" name="LoginSenha" type="password">
       </tr>
 
       <button (click)="login()">Entrar</button>
@@ -36,31 +35,31 @@
       <tr>
 
 
-        <input [(ngModel)]="pessoa.nome" placeholder="Digite o nome*">
+        <input [(ngModel)]="pessoa.nome"  name="CadastroNome" placeholder="Digite o nome*">
 
       </tr>
       <tr>
 
 
-        <input [(ngModel)]="pessoa.cpf" placeholder="Digite o CPF*">
+        <input [(ngModel)]="pessoa.cpf" name="CadastroCPF" placeholder="Digite o CPF*">
 
       </tr>
       <tr>
 
 
-        <input [(ngModel)]="pessoa.senha" placeholder="Digite a sua senha*" type="Password">
+        <input [(ngModel)]="pessoa.senha" name="CadastroSenha" placeholder="Digite a sua senha*" type="Password">
 
       </tr>
       <tr>
 
 
-        <input [(ngModel)]="pessoa.telefone" placeholder="Digite o seu telefone*">
+        <input [(ngModel)]="pessoa.telefone" name="CadastroTelefone" placeholder="Digite o seu telefone*">
 
       </tr>
       <tr>
 
 
-        <input [(ngModel)]="pessoa.email" placeholder="Digite o seu E-Mail*">
+        <input [(ngModel)]="pessoa.email" name="CadastroEmail" placeholder="Digite o seu E-Mail*">
 
       </tr>
       <tr>
@@ -73,8 +72,6 @@
 
       <br>
       <button (click)="changeWindow()">Voltar</button>
-
-      
     </form>
     <td *ngIf="usuariaJaCadastrado">Não foi possivel realizar o cadastro</td>
   </div>
