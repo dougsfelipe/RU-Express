@@ -5,11 +5,20 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import {CardapioComponent} from './cardapio.component';
+import {CarteiraComponent} from './carteira.component';
+import {SuporteComponent} from './suporte.component';
+import {SolicitacaoComponent} from './solicitacao.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardapioComponent
+    CardapioComponent,
+    CarteiraComponent,
+    SolicitacaoComponent,
+    SuporteComponent
+
+    
   ],
   imports: [
     BrowserModule,
@@ -18,6 +27,17 @@ import {CardapioComponent} from './cardapio.component';
       {
       path:'cardapio',
       component:CardapioComponent
+    },
+    {
+      path:'carteira',
+      component:CarteiraComponent
+    },
+    {
+      path:'solicitacao',
+      component:SolicitacaoComponent
+    }, {
+      path:'suporte',
+      component:SuporteComponent
     }
     ])  ],
   providers: [],
