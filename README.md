@@ -1,4 +1,4 @@
-# RU-Express 🍛:run:
+# RU-Express 🍛
 Projeto de Engenharia de Software e Sistemas
 
 <br><br>
