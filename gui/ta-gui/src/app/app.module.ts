@@ -4,15 +4,22 @@ import { FormsModule} from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import {CardapioComponent} from './cardapio.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardapioComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
-  ],
+    FormsModule,
+    RouterModule.forRoot([
+      {
+      path:'cardapio',
+      component:CardapioComponent
+    }
+    ])  ],
   providers: [],
   bootstrap: [AppComponent]
 })

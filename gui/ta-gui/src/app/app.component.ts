@@ -12,16 +12,32 @@ import {CadastroPessoa} from './cadastroPessoa';
 })
 export class AppComponent {
   title = 'ta-gui';
-  cpf:string="";
-  senha:string="";
-  loged:boolean=false;
-  cadastro= new CadastroPessoa();
+  pessoa:Pessoa={nome:"",cpf:"",senha:"",telefone:"",adm:false,funcionario:false,email:""};
+  loged:boolean=false;// boleado se fala se o usuaria ta log
+  cadastroPessoa= new CadastroPessoa();
+  tela:boolean=false;//boleano para mudar entre a tela de login(true) e de cadastro(false)
+  usuarioJaCadastrado:boolean=false;
   login():void{
-    var a:boolean= this.cadastro.login(this.cpf,this.senha);
+    var a:boolean= this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
     if (a)this.loged=true;
     else{
-      this.cpf="";
-      this.senha="";
+      this.pessoa.cpf="";
+      this.pessoa.senha="";
     }
+  }
+  changeWindow():void{
+    this.tela=!this.tela;
+  }
+  cadastrar(p:Pessoa):void{
+    if(!this.cadastroPessoa.cadastrar(p)){
+      this.usuarioJaCadastrado=true;
+    }
+
+  }
+  onMove(){
+    this.usuarioJaCadastrado=false;
+  }
+  logout(){
+    this.loged=false;
   }
 }

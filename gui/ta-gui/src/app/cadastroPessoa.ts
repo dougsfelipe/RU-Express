@@ -1,8 +1,14 @@
 import{Pessoa} from './pessoa';
 export class CadastroPessoa{
     pessoas: Pessoa[]=[];
-    cadastrar(pessoa:Pessoa):void{
-        this.pessoas.push(pessoa);
+    cadastrar(pessoa:Pessoa):Pessoa{
+        var result =null;
+        if(this.cpfNaoCadastrado(pessoa.cpf)){
+            this.pessoas.push(pessoa);
+            result=pessoa;
+        }
+        return result;
+
     }
     getPessoa(cpf:string):Pessoa{
         var a:number=this.pessoas.findIndex(x => x.cpf==cpf);
@@ -14,5 +20,9 @@ export class CadastroPessoa{
         if(pessoa==null||pessoa.senha!=senha)return false;
         else return true;
     }
+
+    cpfNaoCadastrado(cpf: string): boolean {
+        return !this.pessoas.find(a => a.cpf == cpf);
+     }
     
 }
