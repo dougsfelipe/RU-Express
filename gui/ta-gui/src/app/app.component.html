@@ -14,18 +14,26 @@
   </nav>
 
   <div class="corpo">
+    <form action="login" class="formulario">
     <tr>
-        <td><label>cpf</label></td>
-        <td><input [(ngModel)]="cpf"></td>
-    </tr>
-    <tr>
-      <td><label>senha</label></td>
-      <td><input [(ngModel)]="senha"></td>
-    </tr>
-    <tr>
-      <td><button (click)="login()">Entrar</button></td>
-    </tr>
         
+        <input [(ngModel)]="cpf"  placeholder="Digite seu CPF">
+    </tr>
+    <br>
+    <tr>
+        
+      <td><input [(ngModel)]="senha"  placeholder="Digite sua senha"></td>
+    </tr>
+
+    
+    
+   
+      <button (click)="login()">Entrar</button>
+      <BR>
+        <button (click)="login()">Cadastrar</button>
+
+        
+  </form>
   </div>
   
 </body>
