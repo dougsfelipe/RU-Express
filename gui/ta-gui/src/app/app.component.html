@@ -14,10 +14,18 @@
   </nav>
 
   <div class="corpo">
-
-      <h1>
-          Boilerplate do projeto
-        </h1>
+    <tr>
+        <td><label>cpf</label></td>
+        <td><input [(ngModel)]="cpf"></td>
+    </tr>
+    <tr>
+      <td><label>senha</label></td>
+      <td><input [(ngModel)]="senha"></td>
+    </tr>
+    <tr>
+      <td><button (click)="login()">Entrar</button></td>
+    </tr>
+        
   </div>
   
 </body>
