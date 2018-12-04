@@ -10,6 +10,8 @@ body{
     width: 100%;
     height: 100vh;
 }
+
+/* Começo do css da navbar*/
   .corpo{
       height: 100vh;
       width: 100%;
@@ -19,46 +21,6 @@ body{
       display: inline-flex;
       text-align: center;
   }
-
-  .TelaCadastro{
-      padding-top: 200px;
-  }
-
-  .TelaLogin{
-    padding-top: 200px;
-   
-}
-
-    .formulario{
-       justify-content: center;
-       display: flex;
-    }
-
-  input{
-    background-color: transparent;
-    border: none;
-    border-bottom: #4CAF50 2px solid;
-    width: 120%;
-  }
-
-  input[_ngcontent-c0]{
-      margin-top: 20px;
-      width: 120%;
-  }
-
-  button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin-top: 20px;
-    width: 120%;
-    margin-top: 20px;
-}
 
 
   .navLogo{
@@ -92,14 +54,6 @@ body{
 }
 
 
-
-
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-/* Style the links inside the navigation bar */
 .topnav a {
     float: left;
     color: #f2f2f2;
@@ -110,15 +64,94 @@ input[type=submit]:hover {
     
 }
 
-/* Change the color of links on hover */
 .topnav a:hover {
     background-color: #35A3D3;
     color: black;
     transition-duration: 0.5s;
 }
 
-/* Add a color to the active/current link */
+
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
 }
+
+
+  /*Final do css da nav bar */
+
+  /*Começo do css das telas de login e cadastro */
+  /*Caso aja duvidas :hover e quando o mouse passa em cima e :focus e quando ele é selecionado */
+  /*Algums estiilos nao sao nem classe nem id e sim configuracoes do propio css,tipo o select*/
+  .TelaCadastro{
+      padding-top: 200px;
+  }
+
+  .TelaLogin{
+    padding-top: 200px;
+    
+    }
+
+    input[type=submit]:hover {
+    background-color: #45a049;
+    }
+
+    .formulario{
+       justify-content: center;
+       display: flex;
+    }
+
+  input{
+    background-color: transparent;
+    border: none;
+    border-bottom: #4CAF50 2px solid;
+    width: 120%;
+  }
+
+  input[_ngcontent-c0]{
+      margin-top: 20px;
+      width: 120%;
+  }
+
+  select{
+      width: 120%;
+      border: none;
+      -webkit-appearance: none;
+      border-bottom: solid 2px #4CAF50;
+      margin-top: 20px;
+      background-color: transparent;
+      
+  }
+
+  input:focus,select:focus {
+    box-shadow: 0 0 0 0;
+    border-bottom:solid 2px darkgreen;
+    outline: 0;
+}  
+
+  select{
+    width: 120%;
+    border: none;
+    -webkit-appearance: none;
+    border-bottom: solid 2px #4CAF50;
+    margin-top: 20px;
+    background-color: transparent;
+}
+
+  button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 120%;
+    margin-top: 20px;
+}
+
+/*Começo do css das telas de login e cadastro */
+
+
+  

@@ -6,20 +6,12 @@
     <a class="topnavitem">Logado
       <br>Usuario X</a>
     <img alt="Logo RU" src="assets/images/Logo.gif" class="navLogo">
-<<<<<<< HEAD
-    <a class="topnavitem" name="Cardapio" href="cardapio.component">Cardapio</a>
-    <a class="topnavitem" href="#news">Solicitacao</a>
-    <a class="topnavitem" href="#contact">Carteira</a>
-    <a class="topnavitem" href="#about">Suporte</a>
 
-=======
-
-    <a routerLink="/cardapio">Cardapio</a>
-    <a routerLink="/solicitacao">Solicitacao</a>
-    <a routerLink="/carteira">Carteira</a>
-    <a routerLink="/suporte">Suporte</a>
+    <a class="topnavitem" routerLink="/cardapio">Cardapio</a>
+    <a class="topnavitem" routerLink="/solicitacao">Solicitacao</a>
+    <a class="topnavitem" routerLink="/carteira">Carteira</a>
+    <a class="topnavitem" routerLink="/suporte">Suporte</a>
     
->>>>>>> 43a9c2eec30e6bd4c8f682b7fc9f146268b8cdce
   </nav>
 
   <div class="TelaLogin" *ngIf="!loged && !tela">
@@ -70,6 +62,13 @@
 
         <input [(ngModel)]="pessoa.email" name="CadastroEmail" placeholder="Digite o seu E-Mail*">
 
+      </tr>
+      <tr>
+          <select name="selecionar">
+              <option value="" disabled selected>Selecione seu Tipo</option>
+              <option value="usuario">Usuário</option>
+              <option value="administrador">Administrador</option>
+            </select>
       </tr>
       <tr>
         <br>
