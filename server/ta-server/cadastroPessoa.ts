@@ -1,7 +1,4 @@
-import{Pessoa} from './pessoa';
-import { Injectable } from '@angular/core';
-
-@Injectable()
+import{Pessoa} from '../../gui/ta-gui/src/app/pessoa';
 export class CadastroPessoa{
     pessoas: Pessoa[]=[];
     cadastrar(pessoa:Pessoa):Pessoa{
@@ -13,6 +10,9 @@ export class CadastroPessoa{
             }
         }  
         return result;
+    }
+    getPessoas():Pessoa[]{
+        return this.pessoas;
     }
     getPessoa(cpf:string):Pessoa{
         var a:number=this.pessoas.findIndex(x => x.cpf==cpf);
