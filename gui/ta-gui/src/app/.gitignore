@@ -1,0 +1,3 @@
+#arquivos gerados pelo typescript
+*.js
+*js.map

@@ -17,9 +17,15 @@ export class AppComponent {
   cadastroPessoa= new CadastroPessoa();
   tela:boolean=false;//boleano para mudar entre a tela de login(true) e de cadastro(false)
   usuarioJaCadastrado:boolean=false;
+  cadastroEfetivado:boolean=false;
+  pessoaLogada:Pessoa=new Pessoa;
   login():void{
     var a:boolean= this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
-    if (a)this.loged=true;
+    if (a){
+      this.pessoaLogada = this.cadastroPessoa.getPessoa(this.pessoa.cpf);
+      console.log(this.pessoaLogada);
+      this.loged=true;
+    }
     else{
       this.pessoa.cpf="";
       this.pessoa.senha="";
@@ -31,15 +37,19 @@ export class AppComponent {
   cadastrar(p:Pessoa):void{
     if(!this.cadastroPessoa.cadastrar(p)){
       this.usuarioJaCadastrado=true;
-    }
+    }else{
       this.pessoa.cpf="";
       this.pessoa.senha="";
       this.pessoa.nome="";
       this.pessoa.telefone="";
       this.pessoa.email="";
+      this.cadastroEfetivado=true;
+    }
+      
   }
   onMove(){
     this.usuarioJaCadastrado=false;
+    this.cadastroEfetivado=false;
   }
   logout(){
     this.loged=false;
