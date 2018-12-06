@@ -19,9 +19,12 @@ export class AppComponent {
   cadastroEfetivado:boolean=false;
   pessoaLogada:Pessoa=new Pessoa;
   loginInvalido:boolean=false;
+
   constructor(private cadastroPessoa: CadastroPessoa){}
+
   login():void{
-    var a:boolean= this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
+    var a:boolean;
+    a = this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
     if (a){
       this.pessoaLogada = this.cadastroPessoa.getPessoa(this.pessoa.cpf);
       console.log(this.pessoaLogada);

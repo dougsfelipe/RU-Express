@@ -8,10 +8,10 @@
   },
   "author": "Equipe RU-EXpress",
   "dependencies": {
-    "express": "^4.15.4",
-    "body-parser": "^1.18.2",
     "@types/body-parser": "^1.16.5",
-    "@types/express": "^4.0.37"
+    "@types/express": "^4.0.37",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.4"
   },
   "devDependencies": {
     "@types/request-promise": "^4.1.38",
