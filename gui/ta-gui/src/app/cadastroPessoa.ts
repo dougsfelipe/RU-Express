@@ -4,7 +4,7 @@ export class CadastroPessoa{
     pessoas: Pessoa[]=[];
     cadastrar(pessoa:Pessoa):Pessoa{
         var result =null;
-        if(this.verificarNVazio){
+        if(this.verificarNVazio(pessoa)){
             if(this.cpfNaoCadastrado(pessoa.cpf)){
                 this.pessoas.push(pessoa);
                 result=pessoa;
@@ -26,10 +26,11 @@ export class CadastroPessoa{
     cpfNaoCadastrado(cpf: string): boolean {
         return !this.pessoas.find(a => a.cpf == cpf);
      }
-    verificarNVazio(pessoa:Pessoa): boolean{
-        if((pessoa.nome != null), (pessoa.cpf != null), (pessoa.email != null), (pessoa.senha !=null)){
-            return true;
+    verificarNVazio(pessoa:Pessoa): boolean{//verifica se as informações necessárias das pessoa não estão vazias
+        if(!pessoa.nome || !pessoa.cpf || !pessoa.email || !pessoa.senha || !pessoa.telefone){
+            return false;
+            
         }
-        return false;
+        return true;
     }
 }

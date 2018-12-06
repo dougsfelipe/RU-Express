@@ -19,6 +19,7 @@ export class AppComponent {
   usuarioJaCadastrado:boolean=false;
   cadastroEfetivado:boolean=false;
   pessoaLogada:Pessoa=new Pessoa;
+  loginInvalido:boolean=false;
   login():void{
     var a:boolean= this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
     if (a){
@@ -27,6 +28,7 @@ export class AppComponent {
       this.loged=true;
     }
     else{
+      this.loginInvalido=true;
       this.pessoa.cpf="";
       this.pessoa.senha="";
     }
@@ -36,7 +38,7 @@ export class AppComponent {
   }
   cadastrar(p:Pessoa):void{
     if(!this.cadastroPessoa.cadastrar(p)){
-      this.usuarioJaCadastrado=true;
+      this.usuarioJaCadastrado=true;//ou qualquer outro erro de login
     }else{
       this.pessoa.cpf="";
       this.pessoa.senha="";
@@ -50,6 +52,7 @@ export class AppComponent {
   onMove(){
     this.usuarioJaCadastrado=false;
     this.cadastroEfetivado=false;
+    this.loginInvalido=false;
   }
   logout(){
     this.loged=false;

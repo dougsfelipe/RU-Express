@@ -27,6 +27,7 @@
       <BR>
       <button (click)="changeWindow()">Cadastrar</button>
     </form>
+    <td *ngIf="loginInvalido">CPF ou Senha incorretos</td>
   </div>
   <div class="TelaCadastro" *ngIf="!loged&&tela">
 
