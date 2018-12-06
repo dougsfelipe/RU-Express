@@ -8,20 +8,26 @@ var app = express();
 
 var pessoas: CadastroPessoa = new CadastroPessoa();
 
+var allowCrossDomain = function(req: any, res: any, next: any) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+}
+app.use(allowCrossDomain);
 app.use(bodyParser.json());
 
 app.get('/pessoas', function (req, res) {
-  var pessoa: string = JSON.stringify(pessoas.getPessoas());
-  res.send(pessoa);
+  res.send(JSON.stringify(pessoas.getPessoas()));
 })
 
 app.post('/pessoas', function (req: express.Request, res: express.Response) {
   var pessoa: Pessoa = <Pessoa> req.body; //verificar se é mesmo Pessoa!
   pessoa = pessoas.cadastrar(pessoa);
   if (pessoa) {
-    res.send({"successo": "Cadastro bem sucedido"});
+    res.send({"success": "Cadastro bem sucedido"});
   } else {
-    res.send({"falha": "O cadastro não pode ser efetivado"});
+    res.send({"failure": "O cadastro não pode ser efetivado"});
   }
 })
 

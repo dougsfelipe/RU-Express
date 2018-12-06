@@ -19,12 +19,6 @@ export class CadastroPessoa{
         if(a<0)return null;
         else return this.pessoas[a];
     }
-    login(cpf:string,senha:string):boolean{
-        var pessoa:Pessoa=this.getPessoa(cpf);
-        if(pessoa==null||pessoa.senha!=senha)return false;
-        else return true;
-    }
-
     cpfNaoCadastrado(cpf: string): boolean {
         return !this.pessoas.find(a => a.cpf == cpf);
      }

@@ -1,38 +1,45 @@
 import{Pessoa} from './pessoa';
 import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import 'rxjs';
 
 @Injectable()
 export class CadastroPessoa{
-    pessoas: Pessoa[]=[];
-    cadastrar(pessoa:Pessoa):Pessoa{
-        var result =null;
-        if(this.verificarNVazio(pessoa)){
-            if(this.cpfNaoCadastrado(pessoa.cpf)){
-                this.pessoas.push(pessoa);
-                result=pessoa;
-            }
-        }  
-        return result;
+    private pessoas: Pessoa[]=[];
+    private headers = new Headers({'Content-Type': 'application/json'});
+    private taURL = 'http://localhost:3000';
+    constructor(private http: Http){}
+    cadastrar(pessoa:Pessoa):Promise<Pessoa>{
+        return this.http.post(this.taURL + "/pessoas",JSON.stringify(pessoa), {headers: this.headers})
+           .toPromise()
+           .then(res => {
+              if (res.json().success) {return pessoa as Pessoa;} else {return null as void;}
+           })
+           .catch(this.tratarErro);  
+    }
+
+    getPessoas(): Promise<Pessoa[]> {
+        return this.http.get(this.taURL + "/pessoas")
+                 .toPromise()
+                 .then(res => this.pessoas=res.json() as Pessoa[])
+                 .catch(this.tratarErro);
     }
     getPessoa(cpf:string):Pessoa{
+        this.getPessoas();
         var a:number=this.pessoas.findIndex(x => x.cpf==cpf);
         if(a<0)return null;
         else return this.pessoas[a];
     }
+
     login(cpf:string,senha:string):boolean{
         var pessoa:Pessoa=this.getPessoa(cpf);
         if(pessoa==null||pessoa.senha!=senha)return false;
         else return true;
     }
 
-    cpfNaoCadastrado(cpf: string): boolean {
-        return !this.pessoas.find(a => a.cpf == cpf);
-     }
-    verificarNVazio(pessoa:Pessoa): boolean{//verifica se as informações necessárias das pessoa não estão vazias
-        if(!pessoa.nome || !pessoa.cpf || !pessoa.email || !pessoa.senha || !pessoa.telefone){
-            return false;
-            
-        }
-        return true;
-    }
+    private tratarErro(erro: any): Promise<any>{//trata erro de acesso ao servidor
+        console.error('Acesso mal sucedido ao servidor',erro);
+        return Promise.reject(erro.message || erro);
+      }
+
 }

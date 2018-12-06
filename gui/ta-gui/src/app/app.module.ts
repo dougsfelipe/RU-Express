@@ -8,7 +8,8 @@ import {CardapioComponent} from './cardapio.component';
 import {CarteiraComponent} from './carteira.component';
 import {SuporteComponent} from './suporte.component';
 import {SolicitacaoComponent} from './solicitacao.component';
-
+import { HttpModule } from '@angular/http';
+import { CadastroPessoa } from './cadastroPessoa';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {SolicitacaoComponent} from './solicitacao.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule, 
     RouterModule.forRoot([
       {
       path:'cardapio',
@@ -40,7 +42,7 @@ import {SolicitacaoComponent} from './solicitacao.component';
       component:SuporteComponent
     }
     ])  ],
-  providers: [],
+  providers: [CadastroPessoa],
   bootstrap: [AppComponent]
 })
 

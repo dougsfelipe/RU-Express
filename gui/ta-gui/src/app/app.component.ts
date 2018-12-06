@@ -12,14 +12,14 @@ import {CadastroPessoa} from './cadastroPessoa';
 })
 export class AppComponent {
   title = 'ta-gui';
-  pessoa:Pessoa={nome:"",cpf:"",senha:"",telefone:"",adm:false,funcionario:false,email:""};
+  pessoa:Pessoa= new Pessoa();
   loged:boolean=false;// boleado se fala se o usuaria ta log
-  cadastroPessoa= new CadastroPessoa();
   tela:boolean=false;//boleano para mudar entre a tela de login(true) e de cadastro(false)
   usuarioJaCadastrado:boolean=false;
   cadastroEfetivado:boolean=false;
   pessoaLogada:Pessoa=new Pessoa;
   loginInvalido:boolean=false;
+  constructor(private cadastroPessoa: CadastroPessoa){}
   login():void{
     var a:boolean= this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
     if (a){
@@ -37,14 +37,12 @@ export class AppComponent {
     this.tela=!this.tela;
   }
   cadastrar(p:Pessoa):void{
-    if(!this.cadastroPessoa.cadastrar(p)){
+    let a = this.cadastroPessoa.cadastrar(p);
+    console.log(a);
+    if(!a){
       this.usuarioJaCadastrado=true;//ou qualquer outro erro de login
     }else{
-      this.pessoa.cpf="";
-      this.pessoa.senha="";
-      this.pessoa.nome="";
-      this.pessoa.telefone="";
-      this.pessoa.email="";
+      this.pessoa.clean();
       this.cadastroEfetivado=true;
     }
       
