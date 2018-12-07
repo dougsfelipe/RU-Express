@@ -15,19 +15,17 @@ export class AppComponent {
   pessoa:Pessoa= new Pessoa();
   loged:boolean=false;// boleado se fala se o usuaria ta log
   tela:boolean=false;//boleano para mudar entre a tela de login(true) e de cadastro(false)
-  usuarioJaCadastrado:boolean=false;
+  erroCadastro:boolean=false;
   cadastroEfetivado:boolean=false;
   pessoaLogada:Pessoa=new Pessoa;
   loginInvalido:boolean=false;
-
   constructor(private cadastroPessoa: CadastroPessoa){}
-
-  login():void{
-    var a:boolean;
-    a = this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
+  
+  async login(){
+    var a:boolean= await this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
     if (a){
-      this.pessoaLogada = this.cadastroPessoa.getPessoa(this.pessoa.cpf);
-      console.log(this.pessoaLogada);
+      let agora = this;
+      this.cadastroPessoa.getPessoa(this.pessoa.cpf).then(res =>{agora.pessoaLogada=res}).catch();
       this.loged=true;
     }
     else{
@@ -39,23 +37,33 @@ export class AppComponent {
   changeWindow():void{
     this.tela=!this.tela;
   }
-  cadastrar(p:Pessoa):void{
-    let a = this.cadastroPessoa.cadastrar(p);
-    console.log(a);
-    if(!a){
-      this.usuarioJaCadastrado=true;//ou qualquer outro erro de login
+  async cadastrar(p:Pessoa){
+    let a = this.verificarNVazio(p)
+    if(a){
+      let b = await this.cadastroPessoa.cadastrar(p);
+      if(!b){
+        this.erroCadastro=true;//erro de cadastro
+      }else{
+        this.pessoa.clean();
+        this.cadastroEfetivado=true;
+      }
     }else{
-      this.pessoa.clean();
-      this.cadastroEfetivado=true;
+      this.erroCadastro=true;
     }
-      
   }
   onMove(){
-    this.usuarioJaCadastrado=false;
+    this.erroCadastro=false;
     this.cadastroEfetivado=false;
     this.loginInvalido=false;
   }
   logout(){
     this.loged=false;
   }
+  verificarNVazio(pessoa:Pessoa): boolean{//verifica se as informações necessárias das pessoa não estão vazias
+    if(!pessoa.nome || !pessoa.cpf || !pessoa.email || !pessoa.senha || !pessoa.telefone){
+        return false;
+        
+    }
+    return true;
+}
 }

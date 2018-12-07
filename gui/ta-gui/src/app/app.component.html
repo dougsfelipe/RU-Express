@@ -82,7 +82,7 @@
       <br>
       <button (click)="changeWindow()">Voltar</button>
     </form>
-    <td *ngIf="usuarioJaCadastrado">Não foi possivel realizar o cadastro</td>
+    <td *ngIf="erroCadastro">Não foi possivel realizar o cadastro</td>
     <td *ngIf="cadastroEfetivado">Cadastro bem sucedido</td>
   </div>
   <router-outlet *ngIf="loged"></router-outlet>
