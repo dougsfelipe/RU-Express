@@ -4,13 +4,14 @@ import { FormsModule} from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import {FilaComponent} from './fila.component';
+import {FilaComponent} from './fila/fila.component';
 import {CardapioComponent} from './cardapio.component';
 import {CarteiraComponent} from './carteira.component';
 import {SuporteComponent} from './suporte.component';
 import {SolicitacaoComponent} from './solicitacao.component';
 import { HttpModule } from '@angular/http';
 import { CadastroPessoa } from './cadastroPessoa';
+import {FilaCommunicator} from "./fila/fila.communicator";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { CadastroPessoa } from './cadastroPessoa';
       component:SuporteComponent
     }
     ])  ],
-  providers: [CadastroPessoa],
+  providers: [CadastroPessoa,FilaCommunicator],
   bootstrap: [AppComponent]
 })
 

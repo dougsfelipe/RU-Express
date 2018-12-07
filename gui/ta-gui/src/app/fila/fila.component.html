@@ -5,25 +5,25 @@
   <div class="informationDiv">
     <h3>Tempo médio de espera <strong>agora</strong>:</h3>
     <span>
-    <p>{{filaAtual.getWaitingTime()}}</p>
+    <p>{{tempoDeEspera}}</p>
   </span>
   </div>
 
   <div class="informationDiv">
     <h3>Pessoas na fila <strong>agora</strong>:</h3>
     <span>
-    <p>{{filaAtual.getPersonsOnLine()}}</p>
+    <p>{{pessoasNaFila}}</p>
   </span>
   </div>
 
   <div class="informationDiv">
     <h3>Melhor horário para se estar <strong>no R.U.</strong>:</h3>
     <span>
-    <p>{{filaAtual.getTimeToGo()}}</p>
+    <p>{{melhorHora}}</p>
   </span>
   </div>
 
-  <button class="buttonQueue">Atualizar</button>
+  <button class="buttonQueue" (click)="atualizar()">Atualizar</button>
   <button class="buttonQueue" *ngIf="!estaNaFila">Estou na fila!</button>
   <button class="buttonQueue" *ngIf="estaNaFila">Entrei no R.U.</button>
   <button class="buttonQueue" *ngIf=" estaNaFila">Saí da fila</button>
