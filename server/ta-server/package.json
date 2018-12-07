@@ -1,0 +1,21 @@
+{
+  "name": "ta-server",
+  "version": "0.0.1",
+  "description": "RU-Express",
+  "main": "ta-server.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Equipe RU-EXpress",
+  "dependencies": {
+    "@types/body-parser": "^1.16.5",
+    "@types/express": "^4.0.37",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@types/request-promise": "^4.1.38",
+    "jasmine": "^2.8.0",
+    "request-promise": "^4.2.2"
+  }
+}
