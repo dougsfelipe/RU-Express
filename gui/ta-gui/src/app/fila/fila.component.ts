@@ -26,12 +26,41 @@ export class FilaComponent implements OnInit{
 
   async atualizar() {
     this.filaAtual = await this.comunicador.getQueueData();
-    //this.filaAtual.setFeatures(10,-1,null);
+    this.filaAtual.setFeatures(10,-1,null);
     if (!this.isAtLine){
       this.waitingTime = this.calculadora.secondsToFullTime(this.filaAtual.getWaitingTime());
       this.bestTime = this.filaAtual.getTimeToGo();
     }
     this.queuePeople = this.filaAtual.getPersonsOnLine() + " pessoas";
+  }
+
+  atQueue() : void {
+    this.isAtLine = true;
+    this.bestTime = "Já está na fila.";
+    this.initialize(this.filaAtual.getWaitingTime());
+  }
+
+  //COUNTDOWN MANAGER
+  private destroyable : Subject<boolean>;
+  private initialTime : number;
+  private countdown : Observable<void>;
+  private subscribed;
+
+  initialize(initialTime : number): void {
+    this.destroyable = new Subject();
+    this.initialTime = initialTime;
+    this.countdown = interval(1000).pipe(takeUntil(this.destroyable),map((x)=>{
+      this.initialTime--;
+      if (this.initialTime < 0) {
+        this.destroyable.next(true);
+      }
+    }));
+    this.subscribed = this.countdown.subscribe(val => this.waitingTime = this.calculadora.secondsToFullTime(this.initialTime));
+  }
+
+  destroyIt(): void {
+    this.destroyable.next(true);
+    this.subscribed.unsubscribe();
   }
 
   //INITIALIZING MODULE
