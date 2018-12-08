@@ -14,7 +14,8 @@ export class FilaCommunicator{
         .toPromise()
         .then(res => {
           let auxiliary : FilaData = res.json() as FilaData;
-          let returner : FilaData = new FilaData(auxiliary.estimatedWaitingTime,auxiliary.estimatedPersonsOnLine,auxiliary.estimatedTimeToGo);
+          let returner : FilaData = new FilaData(0,0,null);
+          returner.copyFrom(auxiliary);
           return returner;
         })
         .catch(this.tratarErro);

@@ -1,5 +1,5 @@
 <html>
-<div class="queueMonitoring">
+<div *ngIf="!modalShow" class="queueMonitoring">
   <h2>Monitoramento de Fila</h2>
 
   <div class="informationDiv">
@@ -24,9 +24,23 @@
   </div>
 
   <button class="buttonQueue" (click)="atualizar()">Atualizar</button>
-  <button class="buttonQueue" *ngIf="!estaNaFila">Estou na fila!</button>
-  <button class="buttonQueue" *ngIf="estaNaFila">Entrei no R.U.</button>
-  <button class="buttonQueue" *ngIf=" estaNaFila">Saí da fila</button>
+  <button class="buttonQueue" *ngIf="!estaNaFila" (click)="atQueue()">Estou na fila!</button>
+  <button class="buttonQueue" *ngIf="estaNaFila" (click)="enteredRestaurant()">Entrei no R.U.</button>
+  <button class="buttonQueue" *ngIf=" estaNaFila" (click)="getOutOfQueue()">Saí da fila</button>
+
+</div>
+
+<div *ngIf="modalShow" class="modalDialog">
+
+  <h2>Tempo de fila <strong>acabou!</strong></h2>
+
+  <p>O tempo estimado de fila acabou e você ainda está aqui.<br>
+      Lamentamos muito por este erro.<br>
+      Caso você tenha saído da fila e esquecido de marcar ou já tenha entrado no restaurante, nos avise.</p>
+
+  <button (click)="getOutOfQueueFromDialog()">Saí da fila</button>
+  <button (click)="enteredRestaurantFromDialog()">Entrei no restaurante</button>
+  <button (click)="stillInLineFromDialog()">Ainda na fila!</button>
 
 </div>
 </html>

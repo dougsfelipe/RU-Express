@@ -1,8 +1,8 @@
 export class FilaData{
 
-  estimatedWaitingTime: number;
-  estimatedPersonsOnLine: number;
-  estimatedTimeToGo: string;
+  private estimatedWaitingTime: number;
+  private estimatedPersonsOnLine: number;
+  private estimatedTimeToGo: string;
 
   constructor( waitingTime : number , personsOnLine : number, timeToGo : string){
     this.estimatedWaitingTime = waitingTime;
@@ -17,13 +17,13 @@ export class FilaData{
   }
 
   copyFrom(from: FilaData): void {
-    this.estimatedWaitingTime = from.getWaitingTime();
-    this.estimatedPersonsOnLine = from.getPersonsOnLine();
-    this.estimatedTimeToGo = from.getTimeToGo();
+    this.estimatedWaitingTime = from.estimatedWaitingTime;
+    this.estimatedPersonsOnLine = from.estimatedPersonsOnLine;
+    this.estimatedTimeToGo = from.estimatedTimeToGo;
   }
 
   setFeatures( waitingTime : number, personsOnLine : number, timeToGo : string) {
-    if (waitingTime != null) {
+    if (waitingTime > -1) {
       this.estimatedWaitingTime = waitingTime;
     }
     if (personsOnLine > -1) {
