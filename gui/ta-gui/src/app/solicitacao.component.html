@@ -21,7 +21,7 @@
 
 <h4>Escolhe a sua refeição</h4>
 
-<select name="SelRef">
+<select name="SelRef"  ng-model="myAlimentos"  ng-options="alimentos.name">
         <option value="" disabled selected>Selecione sua refeição</option>
         <option value="usuario">Usuário</option>
         <option value="administrador">Administrador</option>

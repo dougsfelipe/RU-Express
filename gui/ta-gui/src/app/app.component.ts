@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import {NgModule} from '@angular/core';
+
 
 import {Pessoa} from './pessoa';
 import {CadastroPessoa} from './cadastroPessoa';
