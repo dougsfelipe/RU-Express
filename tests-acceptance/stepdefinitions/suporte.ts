@@ -2,19 +2,13 @@ import { defineSupportCode } from 'cucumber';
 import { browser, $, element, ElementArrayFinder, by } from 'protractor';
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
- let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
- let sameCPF = ((elem, cpf) => elem.element(by.name('cpflist')).getText().then(text => text === cpf));
-let sameName = ((elem, name) => elem.element(by.name('nomelist')).getText().then(text => text === name));
+let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
 
  defineSupportCode(function ({ Given, When, Then }) {
      Given(/^O usuario carlos está na pagina de suporte$/, async () => {
-        await browser.get("http://localhost:4200/Suporte");
-        await expect(browser.getTitle()).to.eventually.equal('Suporte');
-        
+        await browser.get("http://localhost:4200/suporte");
+        await expect(browser.getTitle()).to.eventually.equal('RU Express');
     })
-     Given(/^o usuário está na página de “Suporte”$/, async () => {
-       
-    });
     Given(/^existe a opção “feedback”$/, async () => {
        
     });
@@ -36,7 +30,6 @@ let sameName = ((elem, name) => elem.element(by.name('nomelist')).getText().then
     Then(/^o usuário pode ver o seu feedback criado na tabela de “feedbacks”$/, async () => {
      
     });
-    ________________________________
     Given(/^existe a opção “informações sobre o restaurante”$/, async () => {
        
     });
@@ -67,7 +60,6 @@ let sameName = ((elem, name) => elem.element(by.name('nomelist')).getText().then
     Then(/^o usuário pode ver “desjejum 7:00-8:00” ,”almoço 10:30-14:30” e ”jantar 17:00-19:00” na tabela “horário de funcionamento”$/, async () => {
      
     });
-    ______________________________________
     Given(/^existe a opção “perguntas comuns”$/, async () => {
        
     });
@@ -92,7 +84,6 @@ let sameName = ((elem, name) => elem.element(by.name('nomelist')).getText().then
     Then(/^o usuário pode ver a resposta “No restaurante universitário todas as comidas que possuem lactose na sua composição a especificam ao lado do nome na bandeja do alimento” relacionada a pergunta “Intolerância a lactose”$/, async () => {
      
     });
-    ______________________________________________________
     Given(/^existe a opção “contatos”$/, async () => {
        
     });
