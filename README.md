@@ -19,10 +19,15 @@ __Lucas Aurelio__(lagc)<br>
 <br>
 
 1.`git clone https://github.com/dougsfelipe/RU-Express.git`<br>
-2.Entrar na pasta /gui/ta-gui<br>
-3.No cmd instale as depedencias se necessario `npm install`<br>
-4.Rode o sistema no cmd `npm start`<br>
-5.Para visualizar acesse `localhost:4200`<br>
+2.Entrar na pasta /server/ta-server
+3.No cmd instale as depedencias se necessario  `npm install typescript`
+4.Rode o servidor com `node ta-server.js`
+5.Entrar na pasta /gui/ta-gui<br>
+6.No cmd instale as depedencias se necessario `npm install`<br>
+7.Rode o sistema no cmd `npm start`<br>
+8.Para visualizar acesse `localhost:4200`<br>
+9.Para visualizar acesse `localhost:3000`<br>
+
 
 # Links dos Cenários e Sketches
 
