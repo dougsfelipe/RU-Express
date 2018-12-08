@@ -33,6 +33,13 @@ defineSupportCode(function ({ Given, When, Then }) {
             case "actualize":
                     await $("button[id='actualize']").click();
                 break;
+            case "select":
+                    switch (instanceOf) {
+                        case "I’m in line option":
+                                await $("button[id='atLine']").click();
+                            break;
+                    }
+                break;
         }
     });
 
@@ -43,21 +50,33 @@ defineSupportCode(function ({ Given, When, Then }) {
                         case "waiting time":
                                 expect(await $("p[id='waitingTime']").getText() != null).to.equal(true);
                             break;
+                        case "waiting time countdown":
+                                expect(await RegExp('^(\d* dia[s?],)? (\d* hora[s?],)? (\d* minuto[s?],)? ?\d* segundo[s?]$').test(await $("p[id='waitingTime']").getText()));
+                            break;
                         case "number of persons in line":
                                 expect(await parseInt((await $("p[id='queuePeople']").getText()).split(" ")[0]) > -1).to.equal(true);
                             break;
                         case "best time to go":
                                 expect(await $("p[id='bestTime']").getText() != null).to.equal(true);
                             break;
+                        case "best time to go as a sentence saying I’m in line":
+                                expect(await $("p[id='bestTime']").getText() == "Já está na fila.").to.equal(true);
+                            break;
                     }
                 break;
             case "option":
                     switch (instanceOf) {
                         case "to actualize":
-                            await $("button[id='actualize']");
+                                await $("button[id='actualize']");
                             break;
                         case "to say I'm in line":
-                            await $("button[id='atLine']");
+                                await $("button[id='atLine']");
+                            break;
+                        case "to say I’m leaving the line":
+                                await $("button[id='leavingLine']");
+                            break;
+                        case "to say I’m entering the restaurant":
+                                await $("button[id='enteredRestaurant']");
                             break;
                     }
                 break;
