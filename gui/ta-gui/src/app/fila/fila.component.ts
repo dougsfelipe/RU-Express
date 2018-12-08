@@ -27,7 +27,7 @@ export class FilaComponent implements OnInit{
 
   async atualizar() {
     this.filaAtual = await this.comunicador.getQueueData();
-    this.filaAtual.setFeatures(10,-1,null);
+    //this.filaAtual.setFeatures(10,-1,null);
     if (!this.estaNaFila){
       this.tempoDeEspera = this.calculadora.secondsToFullTime(this.filaAtual.getWaitingTime());
       this.melhorHora = this.filaAtual.getTimeToGo();
