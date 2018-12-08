@@ -17,27 +17,27 @@ export class FilaComponent implements OnInit{
   private filaAtual : FilaData;
   private calculadora : FilaCalculator;
 
-  estaNaFila: boolean;
-  tempoDeEspera : string;
-  pessoasNaFila : string;
-  melhorHora : string;
+  isAtLine: boolean;
+  waitingTime : string;
+  queuePeople : string;
+  bestTime : string;
 
   constructor(private comunicador : FilaCommunicator) {}
 
   async atualizar() {
     this.filaAtual = await this.comunicador.getQueueData();
     //this.filaAtual.setFeatures(10,-1,null);
-    if (!this.estaNaFila){
-      this.tempoDeEspera = this.calculadora.secondsToFullTime(this.filaAtual.getWaitingTime());
-      this.melhorHora = this.filaAtual.getTimeToGo();
+    if (!this.isAtLine){
+      this.waitingTime = this.calculadora.secondsToFullTime(this.filaAtual.getWaitingTime());
+      this.bestTime = this.filaAtual.getTimeToGo();
     }
-    this.pessoasNaFila = this.filaAtual.getPersonsOnLine() + " pessoas";
+    this.queuePeople = this.filaAtual.getPersonsOnLine() + " pessoas";
   }
 
   //INITIALIZING MODULE
   ngOnInit():void{
     this.atualizar();
-    this.estaNaFila = false;
+    this.isAtLine = false;
     this.calculadora = new FilaCalculator;
   }
 
