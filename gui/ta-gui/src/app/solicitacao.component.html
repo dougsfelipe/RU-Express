@@ -1,5 +1,44 @@
 <html>
-    <br><br><br><br><br><br>
-<h1>Implementacao da solicittacao de quentinha</h1>    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Solicitação de quentinha</h1>
 
+
+<h4>Escolha o seu tipo de refeição</h4>
+
+<select name="SelTipo">
+        <option value="" disabled selected>Selecione seu tipo</option>
+        <option value="Almoco">Almoço</option>
+        <option value="Desjejum">Desjejum</option>
+        <option value="Jantar">Jantar</option>
+    </select>
+
+
+
+<h4>Escolhe a sua refeição</h4>
+
+<select name="SelRef">
+        <option value="" disabled selected>Selecione sua refeição</option>
+        <option value="usuario">Usuário</option>
+        <option value="administrador">Administrador</option>
+    </select>
+
+<h4>Escolha o centro de entrega</h4>
+
+<select name="SelCentro">
+        <option value="" disabled selected>Selecione sua entrega</option>
+        <option value="cin">Cin</option>
+        <option value="cac">CAC</option>
+        <option value="ccen">CCEN</option>
+        <option value="cfch">CFCH</option>
+        <option value="ctg">CTG</option>
+        <option value="ccs">CCS</option>
+    </select>
+    <br>
+
+    <button (click)="cadastrar(pessoa)">Solicitar</button>
 </html>
