@@ -11,29 +11,42 @@ let sameName = ((elem, name) => elem.element(by.name('nomelist')).getText().then
 let pAND = ((p,q) => p.then(a => q.then(b => a && b)))
 
 defineSupportCode(function ({ Given, When, Then }) {
-    Given(/^I am at the students page$/, async () => {
+    Given(/^I’m logged successfully and at main page.$/, async () => {
         await browser.get("http://localhost:4200/");
-        await expect(browser.getTitle()).to.eventually.equal('TaGui');
-        await $("a[name='alunos']").click();
-    })
-
-    Given(/^I cannot see a student with CPF "(\d*)" in the students list$/, async (cpf) => {
-        var allcpfs : ElementArrayFinder = element.all(by.name('cpflist'));
-        await allcpfs;
-        var samecpfs = allcpfs.filter(elem =>
-            elem.getText().then(text => text === cpf));
-        await samecpfs;
-        await samecpfs.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
+        await expect(browser.getTitle()).to.eventually.equal('RU Express');
     });
 
-    When(/^I try to register the student "([^\"]*)" with CPF "(\d*)"$/, async (name, cpf) => {
-        await $("input[name='namebox']").sendKeys(<string> name);
-        await $("input[name='cpfbox']").sendKeys(<string> cpf);
-        await element(by.buttonText('Adicionar')).click();
+    When(/^I go to queue monitoring page.$/, async () => {
+        await $("a[id='fila']").click();
     });
 
-    Then(/^I can see "([^\"]*)" with CPF "(\d*)" in the students list$/, async (name, cpf) => {
-        var allalunos : ElementArrayFinder = element.all(by.name('alunolist'));
-        allalunos.filter(elem => pAND(sameCPF(elem,cpf),sameName(elem,name))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    Then(/^I see the ([^\s]*) ([^.]*).$/, async function (typeOf,instanceOf) {
+        let returner : boolean = false;
+        switch (typeOf) {
+            case "estimated":
+                    switch (instanceOf) {
+                        case "waiting time":
+                                expect(await $("p[id='waitingTime']").getText() != null).to.equal(true);
+                            break;
+                        case "number of persons in line":
+                                expect(await parseInt((await $("p[id='queuePeople']").getText()).split(" ")[0]) > -1).to.equal(true);
+                            break;
+                        case "best time to go":
+                                expect(await $("p[id='bestTime']").getText() != null).to.equal(true);
+                            break;
+                    }
+                break;
+            case "option":
+                    switch (instanceOf) {
+                        case "to actualize":
+                            await $("button[id='actualize']");
+                            break;
+                        case "to say I'm in line":
+                            await $("button[id='atLine']");
+                            break;
+                    }
+                break;
+        }
+        return returner;
     });
 })

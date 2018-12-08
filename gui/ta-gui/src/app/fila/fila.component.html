@@ -6,26 +6,26 @@
       <div class="informationDiv">
         <h3>Tempo médio de espera <strong>agora</strong>:</h3>
         <span>
-    <p>{{tempoDeEspera}}</p>
+    <p id="waitingTime">{{tempoDeEspera}}</p>
   </span>
       </div>
 
       <div class="informationDiv">
         <h3>Pessoas na fila <strong>agora</strong>:</h3>
         <span>
-    <p>{{pessoasNaFila}}</p>
+    <p id="queuePeople">{{pessoasNaFila}}</p>
   </span>
       </div>
 
       <div class="informationDiv">
         <h3>Melhor horário para se estar <strong>no R.U.</strong>:</h3>
         <span>
-    <p>{{melhorHora}}</p>
+    <p id="bestTime">{{melhorHora}}</p>
   </span>
       </div>
 
-      <button class="buttonQueue" (click)="atualizar()">Atualizar</button>
-      <button class="buttonQueue" *ngIf="!estaNaFila" (click)="atQueue()">Estou na fila!</button>
+      <button class="buttonQueue" (click)="atualizar()" id="actualize">Atualizar</button>
+      <button class="buttonQueue" *ngIf="!estaNaFila" (click)="atQueue()" id="atLine">Estou na fila!</button>
       <button class="buttonQueue" *ngIf="estaNaFila" (click)="enteredRestaurant()">Entrei no R.U.</button>
       <button class="buttonQueue" *ngIf=" estaNaFila" (click)="getOutOfQueue()">Saí da fila</button>
 
