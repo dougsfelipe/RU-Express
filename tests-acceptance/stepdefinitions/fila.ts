@@ -11,17 +11,32 @@ let sameName = ((elem, name) => elem.element(by.name('nomelist')).getText().then
 let pAND = ((p,q) => p.then(a => q.then(b => a && b)))
 
 defineSupportCode(function ({ Given, When, Then }) {
-    Given(/^I’m logged successfully and at main page.$/, async () => {
-        await browser.get("http://localhost:4200/");
-        await expect(browser.getTitle()).to.eventually.equal('RU Express');
+    Given(/^I’m logged successfully and at ([^.]*) page.$/, async (typeOf) => {
+        switch (typeOf) {
+            case "main":
+                    await browser.get("http://localhost:4200/");
+                    await expect(browser.getTitle()).to.eventually.equal('RU Express');
+                break;
+            case "queue monitoring":
+                    await browser.get("http://localhost:4200/");
+                    await expect(browser.getTitle()).to.eventually.equal('RU Express');
+                    await $("a[id='fila']").click();
+                break;
+        }
     });
 
-    When(/^I go to queue monitoring page.$/, async () => {
-        await $("a[id='fila']").click();
+    When(/^Do ([^\s]*) ([^.]*).$/, async (typeOf, instanceOf) => {
+        switch (typeOf) {
+            case "go":
+                    await $("a[id='fila']").click();
+                break;
+            case "actualize":
+                    await $("button[id='actualize']").click();
+                break;
+        }
     });
 
     Then(/^I see the ([^\s]*) ([^.]*).$/, async function (typeOf,instanceOf) {
-        let returner : boolean = false;
         switch (typeOf) {
             case "estimated":
                     switch (instanceOf) {
@@ -47,6 +62,5 @@ defineSupportCode(function ({ Given, When, Then }) {
                     }
                 break;
         }
-        return returner;
     });
 })
