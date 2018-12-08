@@ -1,0 +1,9 @@
+.queueMonitoring{
+  --h2Size: 6em;
+  --informationDivsSize: 6em;
+  --buttonSize: 3em;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
