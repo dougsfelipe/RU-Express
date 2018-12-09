@@ -25,6 +25,19 @@ defineSupportCode(function ({ Given, When, Then }) {
         }
     });
 
+    Given(/^I’m at ([^.]*) state.$/, async (typeOf) => {
+        switch (typeOf) {
+            case "line":
+                    await browser.get("http://localhost:4200/");
+                    await expect(browser.getTitle()).to.eventually.equal('RU Express');
+                    await $("a[id='fila']").click();
+                    await $("button[id='atLine']").click();
+                break;
+            case "zero countdown":
+                break;
+        }
+    });
+
     When(/^Do ([^\s]*) ([^.]*).$/, async (typeOf, instanceOf) => {
         switch (typeOf) {
             case "go":
