@@ -5,11 +5,6 @@ let expect = chai.expect;
 
 let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
 
-let sameCPF = ((elem, cpf) => elem.element(by.name('cpflist')).getText().then(text => text === cpf));
-let sameName = ((elem, name) => elem.element(by.name('nomelist')).getText().then(text => text === name));
-
-let pAND = ((p,q) => p.then(a => q.then(b => a && b)))
-
 defineSupportCode(function ({ Given, When, Then }) {
     Given(/^I’m logged successfully and at ([^.]*) page.$/, async (typeOf) => {
         switch (typeOf) {
@@ -58,6 +53,9 @@ defineSupportCode(function ({ Given, When, Then }) {
                                 await $("button[id='leavingLine']").click();
                             break;
                     }
+                break;
+            case "countdown":
+                    await this.zeroCountdownDetector();
                 break;
         }
     });

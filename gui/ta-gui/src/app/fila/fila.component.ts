@@ -40,6 +40,20 @@ export class FilaComponent implements OnInit{
     this.initialize(this.filaAtual.getWaitingTime());
   }
 
+  notAtQueue() : void {
+    this.isAtLine = false;
+    this.destroyIt();
+    this.atualizar();
+  }
+
+  getOutOfQueue() : void {
+    this.notAtQueue();
+  }
+
+  enteredRestaurant() : void {
+    this.notAtQueue();
+  }
+
   //COUNTDOWN MANAGER
   private destroyable : Subject<boolean>;
   private initialTime : number;
@@ -61,6 +75,32 @@ export class FilaComponent implements OnInit{
   destroyIt(): void {
     this.destroyable.next(true);
     this.subscribed.unsubscribe();
+  }
+
+  //DIALOG FINALIZED COUNTDOWN MANAGER
+  modalShow : boolean;
+
+  openDialog() : void {
+    this.modalShow = true;
+  }
+
+  closeDialog() : void {
+    this.modalShow = false;
+  }
+
+  getOutOfQueueFromDialog() : void {
+    this.getOutOfQueue();
+    this.closeDialog();
+  }
+
+  enteredRestaurantFromDialog() : void {
+    this.enteredRestaurant();
+    this.closeDialog();
+  }
+
+  stillInLineFromDialog() : void {
+    this.waitingTime = "Tempo limite estourado e ainda na fila!"
+    this.closeDialog();
   }
 
   //INITIALIZING MODULE
