@@ -51,6 +51,9 @@ defineSupportCode(function ({ Given, When, Then }) {
                         case "I’m in line option":
                                 await $("button[id='atLine']").click();
                             break;
+                        case "I'm entering the restaurant option":
+                                await $("button[id='enteredRestaurant']").click();
+                            break;
                     }
                 break;
         }
