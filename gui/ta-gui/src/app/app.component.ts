@@ -5,6 +5,7 @@ import {NgModule} from '@angular/core';
 import {Pessoa} from './pessoa';
 import {CadastroPessoa} from './cadastroPessoa';
 import { CardapioComponent } from './cardapio.component';
+import { Alimento } from './alimento';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +22,13 @@ export class AppComponent {
   pessoaLogada:Pessoa=new Pessoa;
   loginInvalido:boolean=false;
   cardapio:CardapioComponent = new CardapioComponent();
-
-  constructor(private cadastroPessoa: CadastroPessoa){}
   
+  
+
+  
+  constructor(private cadastroPessoa: CadastroPessoa){
+  }
+
   async login(){
     var a:boolean= await this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
     if (a){
@@ -69,4 +74,6 @@ export class AppComponent {
     }
     return true;
 }
+
+
 }

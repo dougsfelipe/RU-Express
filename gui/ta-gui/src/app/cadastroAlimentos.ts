@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CadastroAlimentos{
-    private alimentos: Alimento[] = [];
+    alimentos: Alimento[] = [];
     private headers = new Headers({'Content-Type': 'application/json'});
     private taURL = 'http://localhost:3000';
     constructor(){}
