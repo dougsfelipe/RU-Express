@@ -1,5 +1,6 @@
 import { defineSupportCode } from 'cucumber';
-import { browser, $, element, ElementArrayFinder, by } from 'protractor';
+import {browser, $, element, ElementArrayFinder, by, protractor} from 'protractor';
+import {reject, resolve} from "q";
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
 
@@ -26,7 +27,7 @@ defineSupportCode(function ({ Given, When, Then }) {
                     await browser.get("http://localhost:4200/");
                     await expect(browser.getTitle()).to.eventually.equal('RU Express');
                     await $("a[id='fila']").click();
-                    await $("button[id='atLine']").click();
+                    await $("button[name='atLine']").click();
                 break;
             case "zero countdown":
                 break;
@@ -44,18 +45,25 @@ defineSupportCode(function ({ Given, When, Then }) {
             case "select":
                     switch (instanceOf) {
                         case "I’m in line option":
-                                await $("button[id='atLine']").click();
+                                await $("button[name='atLine']").click();
                             break;
                         case "I'm entering the restaurant option":
-                                await $("button[id='enteredRestaurant']").click();
+                                await $("button[name='enteredRestaurant']").click();
                             break;
                         case "I'm leaving the line option":
-                                await $("button[id='leavingLine']").click();
+                                await $("button[name='leavingLine']").click();
                             break;
                     }
                 break;
             case "countdown":
-                    await this.zeroCountdownDetector();
+                    let expected = new Promise(async (resolve, reject) => {
+                        if (await $("p[id='bestTime']").getText() != "0 segundos") {
+                            reject();
+                        } else {
+                            resolve();
+                        }
+                    });
+                    browser.wait(expected);
                 break;
         }
     });
@@ -87,15 +95,18 @@ defineSupportCode(function ({ Given, When, Then }) {
                                 await $("button[id='actualize']");
                             break;
                         case "to say I'm in line":
-                                await $("button[id='atLine']");
+                                await $("button[name='atLine']");
                             break;
                         case "to say I’m leaving the line":
-                                await $("button[id='leavingLine']");
+                                await $("button[name='leavingLine']");
                             break;
                         case "to say I’m entering the restaurant":
-                                await $("button[id='enteredRestaurant']");
+                                await $("button[name='enteredRestaurant']");
                             break;
                     }
+                break;
+            case "message":
+                    await $("h2[id='messageTimeOverflow']");
                 break;
         }
     });
