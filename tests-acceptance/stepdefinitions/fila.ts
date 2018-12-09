@@ -30,6 +30,18 @@ defineSupportCode(function ({ Given, When, Then }) {
                     await $("button[name='atLine']").click();
                 break;
             case "zero countdown":
+                    await browser.get("http://localhost:4200/");
+                    await expect(browser.getTitle()).to.eventually.equal('RU Express');
+                    await $("a[id='fila']").click();
+                    await $("button[name='atLine']").click();
+                    let expected = new Promise(async (resolve, reject) => {
+                        if (await $("p[id='bestTime']").getText() != "0 segundos") {
+                            reject();
+                        } else {
+                            resolve();
+                        }
+                    });
+                    browser.wait(expected);
                 break;
         }
     });
