@@ -23,8 +23,8 @@
 
 <select name="SelRef"  ng-model="myAlimentos"  ng-options="alimentos.name">
         <option value="" disabled selected>Selecione sua refeição</option>
-        <option value="usuario">Usuário</option>
-        <option value="administrador">Administrador</option>
+        <option value="Salcicha">Salsicha</option>
+        <option value="Lasanha">Lasanha</option>
     </select>
 
 <h4>Escolha o centro de entrega</h4>
@@ -40,5 +40,5 @@
     </select>
     <br>
 
-    <button (click)="cadastrar(pessoa)">Solicitar</button>
+    <button name="Solicitar" (click)="cadastrar(pessoa)">Solicitar</button>
 </html>
