@@ -66,6 +66,7 @@ export class FilaComponent implements OnInit{
     this.countdown = interval(1000).pipe(takeUntil(this.destroyable),map((x)=>{
       this.initialTime--;
       if (this.initialTime < 0) {
+        this.modalShow = true;
         this.destroyable.next(true);
       }
     }));

@@ -34,14 +34,8 @@ defineSupportCode(function ({ Given, When, Then }) {
                     await expect(browser.getTitle()).to.eventually.equal('RU Express');
                     await $("a[id='fila']").click();
                     await $("button[name='atLine']").click();
-                    let expected = new Promise(async (resolve, reject) => {
-                        if (await $("p[id='bestTime']").getText() != "0 segundos") {
-                            reject();
-                        } else {
-                            resolve();
-                        }
-                    });
-                    browser.wait(expected);
+                    let spectator = protractor.ExpectedConditions;
+                    browser.wait(spectator.presenceOf($("p[id='messageTimeOverflow']")));
                 break;
         }
     });
@@ -68,14 +62,8 @@ defineSupportCode(function ({ Given, When, Then }) {
                     }
                 break;
             case "countdown":
-                    let expected = new Promise(async (resolve, reject) => {
-                        if (await $("p[id='bestTime']").getText() != "0 segundos") {
-                            reject();
-                        } else {
-                            resolve();
-                        }
-                    });
-                    browser.wait(expected);
+                    let spectator = protractor.ExpectedConditions;
+                    browser.wait(spectator.presenceOf($("p[id='messageTimeOverflow']")));
                 break;
         }
     });
@@ -89,6 +77,9 @@ defineSupportCode(function ({ Given, When, Then }) {
                             break;
                         case "waiting time countdown":
                                 expect(await RegExp('^(\d* dia[s?],)? (\d* hora[s?],)? (\d* minuto[s?],)? ?\d* segundo[s?]$').test(await $("p[id='waitingTime']").getText()));
+                            break;
+                        case "waiting time as a sentence saying I’ve passed the limit of normal waiting":
+                                expect(await $("p[id='waitingTime']").getText() == "Tempo limite estourado e ainda na fila!").to.equal(true);
                             break;
                         case "number of persons in line":
                                 expect(await parseInt((await $("p[id='queuePeople']").getText()).split(" ")[0]) > -1).to.equal(true);
