@@ -25,7 +25,7 @@
     <h1 class="cardapioTitulo">Cardápio</h1>
     <!--dia-->
     <label>Dia</label>
-    <select [(ngModel)]="diaCard" name="diaCardapio" id="cardapioDiaSelect">
+    <select [(ngModel)]="diaCard" name="diaCardapio" id="cardapioDiaSelect" ngchange="getAllAlimentos()">
         <option value="seg">seg</option>
         <option value="ter">ter</option>
         <option value="qua">qua</option>
@@ -37,8 +37,13 @@
     
     <!--formulario dos alimentos-->
     <form id="cardapioForm"><!--idealmente seria colocada um ngif pessoa.adm, mas como não foi feita essa parte de adm funcionando, não foi utilizado-->
-        <input type="text" placeholder="tipo do alimento" name="alimentoTipo" [(ngModel)]="alimentoCaR.tipo">
         <input type="text" placeholder="nome do alimento" name="alimentoNome" [(ngModel)]="alimentoCaR.nome">
+        <label>Tipo</label>
+        <select name="alimentoTipo" [(ngModel)]="alimentoCaR.tipo">
+                <option value="Desjejum">Desjejum</option>
+                <option value="Almoço">Almoço</option>
+                <option value="Jantar">Jantar</option>
+            </select>
     </form>
 
     <button (click)="selectAlimento(alimentoCaR)">Selecionar</button>
@@ -46,8 +51,8 @@
 
     <!--mensagens de erro-->
     <h2 class="cardapioTErro" *ngIf="erroCadastroAlimento">Não foi possível realizar o cadastro</h2>
-    <h2 class="cardapioTErro" *ngIf="erroSelectAlimento">Não foi possível selecionar o alimento</h2>
-
+    <h2 class="cardapioTErro" *ngIf="erroSelectAlimento || erroAtualizarAlimento">Não foi possível selecionar o alimento</h2>
+    <h2 class="cardapioTErro" *ngIf="cadastrobsAlimento">Alimento cadastrado com sucesso</h2>
     <!--Tabelas dos dias alimentos-->
     <table *ngIf="diaCard == 'seg'" class="cardapioTabela">
         <tr>
@@ -56,19 +61,25 @@
         <tr>
             <td>Desjejum</td>
             <td>
-                Aqui vai ficar a lista da segunda
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Desjejum'"></p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Almoço</td>
             <td>
-                Aqui vai ficar a lista da segunda
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Almoço'"></li>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Jantar</td>
             <td>
-                Aqui vai ficar a lista da segunda
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Jantar'"></li>
+                </div>
             </td>
         </tr>
     </table>

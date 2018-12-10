@@ -21,10 +21,6 @@ export class AppComponent {
   cadastroEfetivado:boolean=false;
   pessoaLogada:Pessoa=new Pessoa;
   loginInvalido:boolean=false;
-  cardapio:CardapioComponent = new CardapioComponent();
-  
-  
-
   
   constructor(private cadastroPessoa: CadastroPessoa){
   }
