@@ -24,7 +24,12 @@
     background-color: transparent;
     border: none;
     border-bottom: #4CAF50 2px solid;
-    width: 120%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: center;
+    margin-left: 35%;
+    margin-top: 2%;
   }
 
   input[_ngcontent-c0]{
@@ -52,3 +57,10 @@
     border-bottom:solid 2px darkgreen;
     outline: 0;
 }  
+
+.centro{
+  justify-content: center;
+  display: inline-flex;
+      text-align: center;
+
+}

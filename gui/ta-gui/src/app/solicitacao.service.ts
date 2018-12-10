@@ -26,3 +26,5 @@ export class SolicitacaoService {
     console.error('Acesso mal sucedido ao serviço de alunos',erro);
     return Promise.reject(erro.message || erro);
   }
+
+}

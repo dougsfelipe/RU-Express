@@ -1,6 +1,7 @@
 import {Component,OnInit} from '@angular/core';
 import { NgModule } from '@angular/core';
 import {Solicitacao} from './solicitacao';
+import { SolicitacaoService} from './solicitacao.service';
 
 
 
@@ -12,24 +13,13 @@ import {Solicitacao} from './solicitacao';
 
 
 export class SolicitacaoComponent implements OnInit{    
-    
-
+   
 
     solicitacao:Solicitacao= new Solicitacao();
     loged:boolean=true;
     solicitacaoes: Solicitacao[];
 
-    cadastrarQuentinha(a: Solicitacao): void {
-       
-              
-                 this.solicitacaoes.push(a);
-                 this.solicitacao = new Solicitacao();
-              
-           
-        
-      }
     
-
     ngOnInit():void{
         
     }

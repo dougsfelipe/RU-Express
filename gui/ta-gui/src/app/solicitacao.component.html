@@ -21,26 +21,41 @@
 
 <h4>Escolhe a sua refeição</h4>
 
-<select [(ngModel)]="Solicitacao.Refeicao"  name="SelRef" ng-model="myAlimentos" ng-options="alimentos.name">
+<select [(ngModel)]="Solicitacao.Refeicao" name="SelRef" ng-model="myAlimentos" ng-options="alimentos.name">
     <option value="" disabled selected>Selecione sua refeição</option>
-    <option  value="Salcicha">Salsicha</option>
-    <option  value="Lasanha">Lasanha</option>
+    <option value="Salcicha">Salsicha</option>
+    <option value="Lasanha">Lasanha</option>
 </select>
 
 <h4>Escolha o centro de entrega</h4>
 
 <select [(ngModel)]="Solicitacao.Local" name="SelCentro">
     <option value="" disabled selected>Selecione sua entrega</option>
-    <option  value="cin">Cin</option>
-    <option  value="cac">CAC</option>
-    <option  value="ccen">CCEN</option>
-    <option  value="cfch">CFCH</option>
-    <option  value="ctg">CTG</option>
-    <option  value="ccs">CCS</option>
+    <option value="cin">Cin</option>
+    <option value="cac">CAC</option>
+    <option value="ccen">CCEN</option>
+    <option value="cfch">CFCH</option>
+    <option value="ctg">CTG</option>
+    <option value="ccs">CCS</option>
 </select>
 <br>
 
 <button name="Solicitar" (click)="cadastrarQuentinha(Solicitacao)">Solicitar</button>
+
+<h1>Cadastro de Entregador</h1>
+
+    
+        <input [(ngModel)]="Entregador.nome" name="EntregadorNome" type="text" placeholder="Digite o nome do Entregador*" required>
+    
+        <input [(ngModel)]="Entregador.cpf" name="EntregadorCPF" type="text" placeholder="Digite o cpf do Entregador*" required>
+    
+        <input [(ngModel)]="Entregador.telefone" name="EntregadorTelefone" type="text" placeholder="Digite o telefone do Entregador*" required>
+    
+        <input [(ngModel)]="Entregador.email" name="EntregadorEmail" type="text" placeholder="Digite o email do Entregador*" required>
+    
+    <br>
+    <button name = "CdastrarEntregador"(click)="changeWindow()">Cadastrar Enetregador</button>
+ 
 
 
 
