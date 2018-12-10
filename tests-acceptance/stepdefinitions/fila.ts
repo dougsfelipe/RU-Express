@@ -4,7 +4,7 @@ import {reject, resolve} from "q";
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
 
-let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
+//TESTS REALIZED WITHOUT NEED TO LOGIN!!!!!!!!!
 
 defineSupportCode(function ({ Given, When, Then }) {
     Given(/^I’m logged successfully and at ([^.]*) page.$/, async (typeOf) => {
@@ -14,9 +14,8 @@ defineSupportCode(function ({ Given, When, Then }) {
                     await expect(browser.getTitle()).to.eventually.equal('RU Express');
                 break;
             case "queue monitoring":
-                    await browser.get("http://localhost:4200/");
+                    await browser.get("http://localhost:4200/fila");
                     await expect(browser.getTitle()).to.eventually.equal('RU Express');
-                    await $("a[id='fila']").click();
                 break;
         }
     });
@@ -34,8 +33,7 @@ defineSupportCode(function ({ Given, When, Then }) {
                     await expect(browser.getTitle()).to.eventually.equal('RU Express');
                     await $("a[id='fila']").click();
                     await $("button[name='atLine']").click();
-                    let spectator = protractor.ExpectedConditions;
-                    browser.wait(spectator.presenceOf($("p[id='messageTimeOverflow']")));
+                    browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),7000);
                 break;
         }
     });
@@ -59,11 +57,22 @@ defineSupportCode(function ({ Given, When, Then }) {
                         case "I'm leaving the line option":
                                 await $("button[name='leavingLine']").click();
                             break;
+                        case "after zero countdown I’m in line option":
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),6000);
+                                await $("button[name='atLine']").click();
+                            break;
+                        case "after zero countdown I'm entering the restaurant option":
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),6000);
+                                await $("button[name='enteredRestaurant']").click();
+                            break;
+                        case "after zero countdown I'm leaving the line option":
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),6000);
+                                await $("button[name='leavingLine']").click();
+                            break;
                     }
                 break;
             case "countdown":
-                    let spectator = protractor.ExpectedConditions;
-                    browser.wait(spectator.presenceOf($("p[id='messageTimeOverflow']")));
+                    await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),6000);
                 break;
         }
     });
@@ -73,21 +82,27 @@ defineSupportCode(function ({ Given, When, Then }) {
             case "estimated":
                     switch (instanceOf) {
                         case "waiting time":
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
                                 expect(await $("p[id='waitingTime']").getText() != null).to.equal(true);
                             break;
                         case "waiting time countdown":
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
                                 expect(await RegExp('^(\d* dia[s?],)? (\d* hora[s?],)? (\d* minuto[s?],)? ?\d* segundo[s?]$').test(await $("p[id='waitingTime']").getText()));
                             break;
                         case "waiting time as a sentence saying I’ve passed the limit of normal waiting":
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
                                 expect(await $("p[id='waitingTime']").getText() == "Tempo limite estourado e ainda na fila!").to.equal(true);
                             break;
                         case "number of persons in line":
-                                expect(await parseInt((await $("p[id='queuePeople']").getText()).split(" ")[0]) > -1).to.equal(true);
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
+                                expect(await parseInt(await ( await $("p[id='queuePeople']").getText()).split(" ")[0]) > -1).to.equal(true);
                             break;
                         case "best time to go":
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
                                 expect(await $("p[id='bestTime']").getText() != null).to.equal(true);
                             break;
                         case "best time to go as a sentence saying I’m in line":
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
                                 expect(await $("p[id='bestTime']").getText() == "Já está na fila.").to.equal(true);
                             break;
                     }

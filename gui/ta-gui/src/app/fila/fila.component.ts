@@ -46,14 +46,6 @@ export class FilaComponent implements OnInit{
     this.atualizar();
   }
 
-  getOutOfQueue() : void {
-    this.notAtQueue();
-  }
-
-  enteredRestaurant() : void {
-    this.notAtQueue();
-  }
-
   //COUNTDOWN MANAGER
   private destroyable : Subject<boolean>;
   private initialTime : number;
@@ -66,8 +58,8 @@ export class FilaComponent implements OnInit{
     this.countdown = interval(1000).pipe(takeUntil(this.destroyable),map((x)=>{
       this.initialTime--;
       if (this.initialTime < 0) {
-        this.modalShow = true;
-        this.destroyable.next(true);
+        this.openDialog();
+        this.destroyIt();
       }
     }));
     this.subscribed = this.countdown.subscribe(val => this.waitingTime = this.calculadora.secondsToFullTime(this.initialTime));
@@ -89,13 +81,8 @@ export class FilaComponent implements OnInit{
     this.modalShow = false;
   }
 
-  getOutOfQueueFromDialog() : void {
-    this.getOutOfQueue();
-    this.closeDialog();
-  }
-
-  enteredRestaurantFromDialog() : void {
-    this.enteredRestaurant();
+  notAtQueueFromDialog() {
+    this.notAtQueue();
     this.closeDialog();
   }
 

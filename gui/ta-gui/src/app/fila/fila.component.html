@@ -1,7 +1,7 @@
 <html>
     <br><br><br><br><br><br>
     <div *ngIf="!modalShow" class="queueMonitoring">
-      <h2>Monitoramento de Fila</h2>
+      <h2 id="messageQueueMonitoring">Monitoramento de Fila</h2>
 
       <div class="informationDiv">
         <h3>Tempo médio de espera <strong>agora</strong>:</h3>
@@ -26,8 +26,8 @@
 
       <button class="buttonQueue" (click)="atualizar()" id="actualize">Atualizar</button>
       <button class="buttonQueue" *ngIf="!isAtLine" (click)="atQueue()" name="atLine">Estou na fila!</button>
-      <button class="buttonQueue" *ngIf="isAtLine" (click)="enteredRestaurant()" name="enteredRestaurant">Entrei no R.U.</button>
-      <button class="buttonQueue" *ngIf="isAtLine" (click)="getOutOfQueue()" name="leavingLine">Saí da fila</button>
+      <button class="buttonQueue" *ngIf="isAtLine" (click)="notAtQueue()" name="enteredRestaurant">Entrei no R.U.</button>
+      <button class="buttonQueue" *ngIf="isAtLine" (click)="notAtQueue()" name="leavingLine">Saí da fila</button>
 
     </div>
 
@@ -39,8 +39,8 @@
         Lamentamos muito por este erro.<br>
         Caso você tenha saído da fila e esquecido de marcar ou já tenha entrado no restaurante, nos avise.</p>
 
-      <button (click)="getOutOfQueueFromDialog()" name="leavingLine">Saí da fila</button>
-      <button (click)="enteredRestaurantFromDialog()" name="enteredRestaurant">Entrei no restaurante</button>
+      <button (click)="notAtQueueFromDialog()" name="leavingLine">Saí da fila</button>
+      <button (click)="notAtQueueFromDialog()" name="enteredRestaurant">Entrei no restaurante</button>
       <button (click)="stillInLineFromDialog()" name="atLine">Ainda na fila!</button>
 
     </div>
