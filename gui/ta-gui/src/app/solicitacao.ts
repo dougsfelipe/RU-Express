@@ -7,4 +7,15 @@ export class Solicitacao{
     Entregador:string;
     NumeroEntregador:string;
     
+
+constructor(){
+    this.Tipo = "";
+    this.Refeicao = "";
+    this.Tempo = "";
+    this.Nome = "";
+    this.Telefone = "";
+    this.Entregador = "";
+    this.NumeroEntregador ="";
+}
+
 }

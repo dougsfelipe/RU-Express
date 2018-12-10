@@ -1,9 +1,8 @@
 
 import { Component } from '@angular/core';
-
-
 import {Pessoa} from './pessoa';
 import {CadastroPessoa} from './cadastroPessoa';
+
 
 @Component({
   selector: 'app-root',
