@@ -25,7 +25,7 @@
     <h1 class="cardapioTitulo">Cardápio</h1>
     <!--dia-->
     <label>Dia</label>
-    <select [(ngModel)]="diaCard" name="diaCardapio" id="cardapioDiaSelect" ngchange="getAllAlimentos()">
+    <select name="diaCardapio" id="cardapioDiaSelect" (click)="mudarDia()" [(ngModel)]="oldDia">
         <option value="seg">seg</option>
         <option value="ter">ter</option>
         <option value="qua">qua</option>
@@ -62,7 +62,7 @@
             <td>Desjejum</td>
             <td>
                 <div *ngFor="let comida of alimentosShow">
-                    <p *ngIf="comida.tipo == 'Desjejum'"></p>
+                    <p *ngIf="comida.tipo == 'Desjejum'">{{comida.nome}}</p>
                 </div>
             </td>
         </tr>
@@ -70,7 +70,7 @@
             <td>Almoço</td>
             <td>
                 <div *ngFor="let comida of alimentosShow">
-                    <p *ngIf="comida.tipo == 'Almoço'"></li>
+                    <p *ngIf="comida.tipo == 'Almoço'">{{comida.nome}}</p>
                 </div>
             </td>
         </tr>
@@ -78,7 +78,7 @@
             <td>Jantar</td>
             <td>
                 <div *ngFor="let comida of alimentosShow">
-                    <p *ngIf="comida.tipo == 'Jantar'"></li>
+                    <p *ngIf="comida.tipo == 'Jantar'">{{comida.nome}}</p>
                 </div>
             </td>
         </tr>
@@ -86,24 +86,30 @@
 
     <table *ngIf="diaCard == 'ter'" class="cardapioTabela">
         <tr>
-            <th>Segunda-feira</th>
+            <th>Terça-feira</th>
         </tr>
         <tr>
             <td>Desjejum</td>
             <td>
-                Aqui vai ficar a lista da terça
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Desjejum'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Almoço</td>
             <td>
-                Aqui vai ficar a lista da terça
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Almoço'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Jantar</td>
             <td>
-                Aqui vai ficar a lista da terça
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Jantar'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
     </table>
@@ -115,19 +121,25 @@
         <tr>
             <td>Desjejum</td>
             <td>
-                Aqui vai ficar a lista da Quarta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Desjejum'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Almoço</td>
             <td>
-                Aqui vai ficar a lista da Quarta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Almoço'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Jantar</td>
             <td>
-                Aqui vai ficar a lista da Quarta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Jantar'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
     </table>
@@ -139,19 +151,25 @@
         <tr>
             <td>Desjejum</td>
             <td>
-                Aqui vai ficar a lista da Quinta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Desjejum'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Almoço</td>
             <td>
-                Aqui vai ficar a lista da Quinta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Almoço'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Jantar</td>
             <td>
-                Aqui vai ficar a lista da Quinta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Jantar'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
     </table>
@@ -163,19 +181,25 @@
         <tr>
             <td>Desjejum</td>
             <td>
-                Aqui vai ficar a lista da Sexta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Desjejum'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Almoço</td>
             <td>
-                Aqui vai ficar a lista da Sexta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Almoço'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Jantar</td>
             <td>
-                Aqui vai ficar a lista da Sexta
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Jantar'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
     </table>
@@ -187,19 +211,25 @@
         <tr>
             <td>Desjejum</td>
             <td>
-                Aqui vai ficar a lista do Sábado
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Desjejum'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Almoço</td>
             <td>
-                Aqui vai ficar a lista do Sábado
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Almoço'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Jantar</td>
             <td>
-                Aqui vai ficar a lista do Sábado
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Jantar'">{{comida.nome}}</p>
+                </div>
             </td>
         </tr>
     </table>
@@ -211,19 +241,25 @@
             <tr>
                 <td>Desjejum</td>
                 <td>
-                    Aqui vai ficar a lista do Domingo
+                    <div *ngFor="let comida of alimentosShow">
+                        <p *ngIf="comida.tipo == 'Desjejum'">{{comida.nome}}</p>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Almoço</td>
                 <td>
-                    Aqui vai ficar a lista do Domingo
+                    <div *ngFor="let comida of alimentosShow">
+                        <p *ngIf="comida.tipo == 'Almoço'">{{comida.nome}}</p>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Jantar</td>
                 <td>
-                    Aqui vai ficar a lista do Domingo
+                    <div *ngFor="let comida of alimentosShow">
+                        <p *ngIf="comida.tipo == 'Jantar'">{{comida.nome}}</p>
+                    </div>
                 </td>
             </tr>
         </table>

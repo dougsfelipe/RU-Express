@@ -15,7 +15,7 @@ export class CardapioComponent implements OnInit{
     erroAtualizarAlimento:boolean=false;
     cadastrobsAlimento:boolean = false;
     diaCard:string = 'seg';
-    
+    oldDia:string = 'seg';
     private cardapios:CadastroAlimentos[] = []
 
     constructor(private http: Http){
@@ -40,12 +40,12 @@ export class CardapioComponent implements OnInit{
     
     async cadastrarAlimento(alimento:Alimento){//cadastro de alimentos
         if(this.verificarNVazioAlimento(alimento)){
-            let b = await this.cardapios[this.diaCard].cadastrar(alimento);
+            let b = await this.cardapios[this.diaCard].cadastrar(alimento, this.diaCard);
             if(!b)
                 this.erroCadastroAlimento = true;
             else
                 this.cadastrobsAlimento = true;
-                this.alimentosShow.push(alimento);
+                this.getAllAlimentos();
         }
         else{
             this.erroCadastroAlimento = true;
@@ -64,12 +64,18 @@ export class CardapioComponent implements OnInit{
         return true;
     }
     async getAllAlimentos(){
-        console.log(this.cardapios);
         this.cardapios[this.diaCard].alimentosGetAll().then(res => {
-            this.alimentosShow = res;
+            for(let x in this.cardapios){
+                this.cardapios[x].alimentos = res[x];
+            }
+            this.alimentosShow = this.cardapios[this.diaCard].alimentos;
         }).catch();
     }
-    paaa(){
-        console.log(this.diaCard);
+    mudarDia(){
+        console.log(this.oldDia, this.diaCard);
+        if(this.oldDia!=this.diaCard){
+            this.diaCard = this.oldDia;
+            this.getAllAlimentos();
+        }
     }
 }

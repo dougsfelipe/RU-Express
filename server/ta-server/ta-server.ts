@@ -9,7 +9,16 @@ import { Alimento } from '../../gui/ta-gui/src/app/alimento';
 var app = express();
 
 var pessoas: CadastroPessoa = new CadastroPessoa();
-var alimentos: CadastroAlimentos = new CadastroAlimentos();
+let alimentos:CadastroAlimentos[] = [];
+let dia = 'seg';
+alimentos['seg'] = new CadastroAlimentos();
+alimentos['ter'] = new CadastroAlimentos();
+alimentos['qua'] = new CadastroAlimentos();
+alimentos['qui'] = new CadastroAlimentos();
+alimentos['sex'] = new CadastroAlimentos();
+alimentos['sab'] = new CadastroAlimentos();
+alimentos['dom'] = new CadastroAlimentos();
+
 var allowCrossDomain = function(req: any, res: any, next: any) {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -35,12 +44,19 @@ app.post('/pessoas', function (req: express.Request, res: express.Response) {
 
 //os alimentos
 app.get('/alimentos', function (req, res) {
-  res.send(JSON.stringify(alimentos.getAlimentos()));
+  let aux:Alimento[][] = [];
+  for(let x in alimentos){
+    aux[x] = alimentos[x].getAlimentos();
+  }
+  let enviar = {'seg': aux['seg'], 'ter': aux['ter'], 'qua': aux['qua'], 'qui': aux['qui'], 'sex': aux['sex'], 'sab': aux['sab'], 'dom': aux['dom']};
+  res.send(JSON.stringify(enviar));
 })
+
 //faz o cadastro dos alimentos
 app.post('/alimentos', function (req: express.Request, res: express.Response) {
-  var alimento: Alimento = <Alimento> req.body; //verificar se é mesmo alimento!
-  alimento = alimentos.cadastrar(alimento);
+  dia=req.body['dia'];//necessario receber como parametro
+  var alimento: Alimento = <Alimento> req.body['alimento']; //verificar se é mesmo alimento!
+  alimento = alimentos[dia].cadastrar(alimento);
   if (alimento) {
     res.send({"success": "Cadastro bem sucedido"});
   } else {

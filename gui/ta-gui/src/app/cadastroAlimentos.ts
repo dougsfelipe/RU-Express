@@ -9,18 +9,24 @@ export class CadastroAlimentos{
     private headers = new Headers({'Content-Type': 'application/json'});
     private taURL = 'http://localhost:3000';
     constructor(private http: Http){}
-    cadastrar(alimento: Alimento): Promise<Alimento>{
-        return this.http.post(this.taURL + "/alimentos",JSON.stringify(alimento), {headers: this.headers})
+    cadastrar(alimento: Alimento, dia:string): Promise<Alimento>{
+        return this.http.post(this.taURL + "/alimentos",JSON.stringify({'alimento': alimento, 'dia': dia}), {headers: this.headers})
            .toPromise()
            .then(res => {
               if (res.json().success) {return alimento as Alimento;} else {return null;}
            })
            .catch(this.tratarErro); 
     }
-    alimentosGetAll():Promise<Alimento[]>{
-        return this.http.get(this.taURL + "/alimentos")
+    alimentosGetAll():Promise<Alimento[][]>{
+        return this.http.get(this.taURL + "/alimentos",)
                  .toPromise()
-                 .then(res => res.json() as Alimento[])
+                 .then(res => {
+                        let retorno:Alimento[][] = [];
+                        for(let i in res.json()){
+                            retorno[i] = res.json()[i];
+                        }
+                        return retorno;
+                    })
                  .catch(this.tratarErro);
     }
 
