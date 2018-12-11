@@ -18,5 +18,7 @@ export class Entregador{
         this.cpf = from.cpf;
         this.email = from.email;
         this.telefone = from.telefone;
-      }
+    }
+
+    
 }

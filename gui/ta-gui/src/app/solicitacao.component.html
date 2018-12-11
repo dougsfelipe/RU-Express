@@ -10,7 +10,8 @@
 
 <h4>Escolha o seu tipo de refeição</h4>
 
-<select [(ngModel)]="Solicitacao.Tipo" name="SelTipo">
+
+<select name="SelTipo">
     <option value="" disabled selected>Selecione seu tipo</option>
     <option value="Almoco">Almoço</option>
     <option value="Desjejum">Desjejum</option>
@@ -21,7 +22,7 @@
 
 <h4>Escolhe a sua refeição</h4>
 
-<select [(ngModel)]="Solicitacao.Refeicao" name="SelRef" ng-model="myAlimentos" ng-options="alimentos.name">
+<select name="SelRef">
     <option value="" disabled selected>Selecione sua refeição</option>
     <option value="Salcicha">Salsicha</option>
     <option value="Lasanha">Lasanha</option>
@@ -29,7 +30,7 @@
 
 <h4>Escolha o centro de entrega</h4>
 
-<select [(ngModel)]="Solicitacao.Local" name="SelCentro">
+<select name="SelCentro">
     <option value="" disabled selected>Selecione sua entrega</option>
     <option value="cin">Cin</option>
     <option value="cac">CAC</option>
@@ -44,7 +45,7 @@
 
 <h1>Cadastro de Entregador</h1>
 
-    
+<form action="cadastrar(Entregador)" >
         <input [(ngModel)]="Entregador.nome" name="EntregadorNome" type="text" placeholder="Digite o nome do Entregador*" required>
     
         <input [(ngModel)]="Entregador.cpf" name="EntregadorCPF" type="text" placeholder="Digite o cpf do Entregador*" required>
@@ -54,7 +55,10 @@
         <input [(ngModel)]="Entregador.email" name="EntregadorEmail" type="text" placeholder="Digite o email do Entregador*" required>
     
     <br>
-    <button name = "CdastrarEntregador"(click)="changeWindow()">Cadastrar Enetregador</button>
+    <button name = "CadastrarEntregador" type= "submit" (click)="cadastrar(Entregador)">Cadastrar Entregador</button>
+
+</form>
+    
  
 
 

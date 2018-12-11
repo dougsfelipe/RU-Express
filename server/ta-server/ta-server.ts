@@ -2,11 +2,15 @@ import express = require('express');
 import bodyParser = require("body-parser");
 
 import {Pessoa} from '../../gui/ta-gui/src/app/pessoa';
+import {Entregador} from '../../gui/ta-gui/src/app/Entregador';
 import {CadastroPessoa} from './cadastroPessoa';
+import {CadastroEntregador} from './cadastroEntregador';
 
 var app = express();
 
 var pessoas: CadastroPessoa = new CadastroPessoa();
+var entregadores: CadastroEntregador = new CadastroEntregador();
+
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
   res.header('Access-Control-Allow-Origin', "*");
@@ -21,6 +25,8 @@ app.get('/pessoas', function (req, res) {
   res.send(JSON.stringify(pessoas.getPessoas()));
 })
 
+
+
 app.post('/pessoas', function (req: express.Request, res: express.Response) {
   var pessoa: Pessoa = <Pessoa> req.body; //verificar se é mesmo Pessoa!
   pessoa = pessoas.cadastrar(pessoa);
@@ -29,6 +35,22 @@ app.post('/pessoas', function (req: express.Request, res: express.Response) {
   } else {
     res.send({"failure": "O cadastro não pode ser efetivado"});
   }
+})
+
+//Cadastro de entregador
+
+app.post('/entregador', function (req: express.Request, res: express.Response) {
+  var entregador: Entregador = <Entregador> req.body; //verificar se é mesmo Pessoa!
+  entregador = entregadores.cadastrar(entregador);
+  if (entregador) {
+    res.send({"success": "Cadastro bem sucedido"});
+  } else {
+    res.send({"failure": "O cadastro não pode ser efetivado"});
+  }
+})
+
+app.get('/entregador', function (req, res) {
+  res.send(JSON.stringify(entregadores.getEntregadores()));
 })
 
 app.listen(3000, function () {

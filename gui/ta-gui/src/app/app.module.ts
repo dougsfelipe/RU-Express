@@ -10,6 +10,8 @@ import {SuporteComponent} from './suporte.component';
 import {SolicitacaoComponent} from './solicitacao.component';
 import { HttpModule } from '@angular/http';
 import { CadastroPessoa } from './cadastroPessoa';
+import {CadastroEntregador} from './cadastroEntregador';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { CadastroPessoa } from './cadastroPessoa';
     CardapioComponent,
     CarteiraComponent,
     SolicitacaoComponent,
-    SuporteComponent
+    SuporteComponent,
+    SolicitacaoComponent,
 
     
   ],
@@ -42,8 +45,9 @@ import { CadastroPessoa } from './cadastroPessoa';
       component:SuporteComponent
     }
     ])  ],
-  providers: [CadastroPessoa],
+  providers: [CadastroPessoa,CadastroEntregador],
   bootstrap: [AppComponent]
+  
 })
 
 
