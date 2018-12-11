@@ -38,7 +38,7 @@ export class SolicitacaoComponent implements OnInit {
     if (e.cpf != null || e.email != null || e.nome != null || e.telefone != null) {
 
       let b = await this.cadastroEntregador.cadastrar(e);
-
+      this.entregadores.push(e);
       this.Entregador.clean();
       this.cadastroEfetivado = true;
 
@@ -64,7 +64,7 @@ export class SolicitacaoComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-
+ async ngOnInit(){
+    this.cadastroEntregador.getEntregadores().then(as=>this.entregadores=as).catch();
   }
 }
