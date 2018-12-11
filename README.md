@@ -35,7 +35,7 @@ __Lucas Aurelio__(lagc)<br>
 15. E finalmente `npm run webdriver-start`<br>
 16. Abra outro cmd também na pasta `tests-acceptance` e use `tsc`<br>
 17. Agora para de fato rodar os testes, use: `npm test`<br>
-18. Perceba que para verificar os testes do cardápio, é necessário ir em app.component.ts e remover a linha marcada, como também descomentar a linha referente ao loged.
+18. Perceba que para verificar os testes do cardápio, é necessário ir em app.component.ts e remover a linha marcada `loged:boolean=false;//comente para testar`, como também descomentar a linha referente ao loged `//loged:boolean = true;//descomente para testar`.
 
 # Links dos Cenários e Sketches
 

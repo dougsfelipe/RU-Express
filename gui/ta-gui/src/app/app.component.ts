@@ -15,8 +15,8 @@ import { Alimento } from './cardapio/alimento';
 export class AppComponent {
   title = 'ta-gui';
   pessoa:Pessoa= new Pessoa();
-  //loged:boolean=false;// boleado se fala se o usuaria ta log
-  loged:boolean = true;//remova quando não estiver testando
+  loged:boolean=false;//comente para testar
+  //loged:boolean = true;//descomente para testar
   tela:boolean=false;//boleano para mudar entre a tela de login(true) e de cadastro(false)
   erroCadastro:boolean=false;
   cadastroEfetivado:boolean=false;
