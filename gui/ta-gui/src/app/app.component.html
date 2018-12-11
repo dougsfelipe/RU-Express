@@ -14,7 +14,7 @@
     
   </nav>
 
-  <div class="TelaLogin" *ngIf="loged && !tela">
+  <div class="TelaLogin" *ngIf="!loged && !tela">
     <form action="login" class="formulario">
       <tr>
         <input [(ngModel)]="pessoa.cpf" type="text" placeholder="Digite seu CPF" name="LoginCPF" required>
@@ -29,7 +29,7 @@
     </form>
     <td *ngIf="loginInvalido">CPF ou Senha incorretos</td>
   </div>
-  <div class="TelaCadastro" *ngIf="loged&&tela">
+  <div class="TelaCadastro" *ngIf="!loged&&tela">
 
 
     <form action="cadastrar" class="formulario">
@@ -85,7 +85,7 @@
     <td *ngIf="erroCadastro">Não foi possivel realizar o cadastro</td>
     <td *ngIf="cadastroEfetivado">Cadastro bem sucedido</td>
   </div>
-  <router-outlet *ngIf="!loged"></router-outlet>
+  <router-outlet *ngIf="loged"></router-outlet>
 </body>
 
 
