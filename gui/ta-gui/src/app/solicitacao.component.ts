@@ -18,8 +18,9 @@ export class SolicitacaoComponent implements OnInit {
 
 
   title = 'RU Express';
-  loged: boolean = false;// boleado se fala se o usuaria ta log
-  tela: boolean = false;//boleano para mudar entre a tela de login(true) e de cadastro(false)
+  loged: boolean = false;
+  telaSolicitacao: boolean = true;
+  telaCadastro: boolean = true;
   erroCadastro: boolean = false;
   cadastroEfetivado: boolean = false;
 
@@ -42,12 +43,19 @@ export class SolicitacaoComponent implements OnInit {
       this.cadastroEfetivado = true;
 
       this.erroCadastro = true;
-
+      
 
     }
   }
 
-  
+  TelaSolicitacao():void{
+    this.telaSolicitacao=!this.telaSolicitacao;
+    
+  }
+  TelaCadastro():void{
+    this.telaCadastro = !this.telaCadastro;
+  }
+
 
   onMove() {
     this.erroCadastro = false;

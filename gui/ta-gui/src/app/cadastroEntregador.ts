@@ -5,7 +5,7 @@ import 'rxjs';
 
 @Injectable()
 export class CadastroEntregador{
-    private entregadores: Entregador[]=[];
+     entregadores: Entregador[]=[];
     private headers = new Headers({'Content-Type': 'application/json'});
     private taURL = 'http://localhost:3000';
     constructor(private http: Http){}
