@@ -26,7 +26,7 @@ export class FilaComponent implements OnInit{
 
   async atualizar() {
     this.filaAtual = await this.comunicador.getQueueData();
-    //this.filaAtual.setFeatures(2,-1,null);
+    this.filaAtual.setFeatures(2,-1,null);
     if (!this.isAtLine){
       this.waitingTime = this.calculadora.secondsToFullTime(this.filaAtual.getWaitingTime());
       this.bestTime = this.filaAtual.getTimeToGo();
@@ -62,7 +62,7 @@ export class FilaComponent implements OnInit{
         this.destroyIt();
       }
     }));
-    this.subscribed = this.countdown.subscribe(val => this.waitingTime = this.calculadora.secondsToFullTime(this.initialTime));
+    this.subscribed = this.countdown.subscribe(val => this.waitingTime = "Restante: " + this.calculadora.secondsToFullTime(this.initialTime));
   }
 
   destroyIt(): void {
@@ -81,7 +81,7 @@ export class FilaComponent implements OnInit{
     this.modalShow = false;
   }
 
-  notAtQueueFromDialog() {
+  notAtQueueFromDialog() : void {
     this.notAtQueue();
     this.closeDialog();
   }

@@ -24,7 +24,7 @@
         </span>
       </div>
 
-      <button class="buttonQueue" (click)="atualizar()" id="actualize">Atualizar</button>
+      <button class="buttonQueue" (click)="atualizar()" name='actualize'>Atualizar</button>
       <button class="buttonQueue" *ngIf="!isAtLine" (click)="atQueue()" name="atLine">Estou na fila!</button>
       <button class="buttonQueue" *ngIf="isAtLine" (click)="notAtQueue()" name="enteredRestaurant">Entrei no R.U.</button>
       <button class="buttonQueue" *ngIf="isAtLine" (click)="notAtQueue()" name="leavingLine">Saí da fila</button>

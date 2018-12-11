@@ -4,18 +4,18 @@ import {reject, resolve} from "q";
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
 
+
 //TESTS REALIZED WITHOUT NEED TO LOGIN!!!!!!!!!
 
 defineSupportCode(function ({ Given, When, Then }) {
     Given(/^I’m logged successfully and at ([^.]*) page.$/, async (typeOf) => {
         switch (typeOf) {
-            case "main":
+            case "RU Express":
                     await browser.get("http://localhost:4200/");
                     await expect(browser.getTitle()).to.eventually.equal('RU Express');
                 break;
             case "queue monitoring":
-                    await browser.get("http://localhost:4200/fila");
-                    await expect(browser.getTitle()).to.eventually.equal('RU Express');
+                    await $("a[id='fila']").click();
                 break;
         }
     });
@@ -23,17 +23,11 @@ defineSupportCode(function ({ Given, When, Then }) {
     Given(/^I’m at ([^.]*) state.$/, async (typeOf) => {
         switch (typeOf) {
             case "line":
-                    await browser.get("http://localhost:4200/");
-                    await expect(browser.getTitle()).to.eventually.equal('RU Express');
-                    await $("a[id='fila']").click();
                     await $("button[name='atLine']").click();
                 break;
             case "zero countdown":
-                    await browser.get("http://localhost:4200/");
-                    await expect(browser.getTitle()).to.eventually.equal('RU Express');
-                    await $("a[id='fila']").click();
                     await $("button[name='atLine']").click();
-                    browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),7000);
+                    browser.wait(protractor.ExpectedConditions.presenceOf($("div[class='modalDialog']")));
                 break;
         }
     });
@@ -44,35 +38,35 @@ defineSupportCode(function ({ Given, When, Then }) {
                     await $("a[id='fila']").click();
                 break;
             case "actualize":
-                    await $("button[id='actualize']").click();
+                    $("button[name='actualize']").click();
                 break;
             case "select":
                     switch (instanceOf) {
                         case "I’m in line option":
-                                await $("button[name='atLine']").click();
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")));
+                                $("button[name='atLine']").click();
                             break;
                         case "I'm entering the restaurant option":
-                                await $("button[name='enteredRestaurant']").click();
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")));
+                                $("button[name='enteredRestaurant']").click();
                             break;
                         case "I'm leaving the line option":
-                                await $("button[name='leavingLine']").click();
+                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")));
+                                $("button[name='leavingLine']").click();
                             break;
                         case "after zero countdown I’m in line option":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),6000);
-                                await $("button[name='atLine']").click();
+                                $("button[name='atLine']").click();
                             break;
                         case "after zero countdown I'm entering the restaurant option":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),6000);
-                                await $("button[name='enteredRestaurant']").click();
+                                $("button[name='enteredRestaurant']").click();
                             break;
                         case "after zero countdown I'm leaving the line option":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),6000);
-                                await $("button[name='leavingLine']").click();
+                                $("button[name='leavingLine']").click();
                             break;
                     }
                 break;
             case "countdown":
-                    await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")),6000);
+                    await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='modalDialog']")));
                 break;
         }
     });
@@ -82,35 +76,43 @@ defineSupportCode(function ({ Given, When, Then }) {
             case "estimated":
                     switch (instanceOf) {
                         case "waiting time":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
-                                expect(await $("p[id='waitingTime']").getText() != null).to.equal(true);
+                                await expect($("p[id='waitingTime']").getText().then(function (res:string):boolean {
+                                    return res.match(/^[\d* dias?, ]?[\d* horas?, ]?[\d* minutos?, ]?\d* segundo[s?]$/).length > 0;
+                                }));
                             break;
                         case "waiting time countdown":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
-                                expect(await RegExp('^(\d* dia[s?],)? (\d* hora[s?],)? (\d* minuto[s?],)? ?\d* segundo[s?]$').test(await $("p[id='waitingTime']").getText()));
+                                await expect($("p[id='waitingTime']").getText().then(function (res:string):boolean {
+                                    return res.match(/^Restante: ([^.]*)$/).length > 0;
+                                }));
                             break;
                         case "waiting time as a sentence saying I’ve passed the limit of normal waiting":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
-                                expect(await $("p[id='waitingTime']").getText() == "Tempo limite estourado e ainda na fila!").to.equal(true);
+                                await expect($("p[id='waitingTime']").getText().then(function (res:string):boolean {
+                                    return res.match(/^Tempo limite estourado e ainda na fila!$/).length > 0;
+                                }));
                             break;
                         case "number of persons in line":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
-                                expect(await parseInt(await ( await $("p[id='queuePeople']").getText()).split(" ")[0]) > -1).to.equal(true);
+                                await expect($("p[id='queuePeople']").getText().then(function (res:string):boolean {
+                                    return res.match(/^\d* pessoas$/).length > 0;
+                                }));
                             break;
                         case "best time to go":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
-                                expect(await $("p[id='bestTime']").getText() != null).to.equal(true);
+                                await expect($("p[id='bestTime']").getText().then(function(res : string) : boolean {
+                                    return res != null;
+                                }));
                             break;
                         case "best time to go as a sentence saying I’m in line":
-                                await browser.wait(protractor.ExpectedConditions.visibilityOf($("div[class='queueMonitoring']")),5000);
-                                expect(await $("p[id='bestTime']").getText() == "Já está na fila.").to.equal(true);
+                                await expect($("p[id='bestTime']").getText().then(function(res : string) : boolean {
+                                    return res.match(/^Já está na fila.$/).length > 0;
+                                }));
                             break;
                     }
                 break;
             case "option":
                     switch (instanceOf) {
                         case "to actualize":
-                                await $("button[id='actualize']");
+                                await expect($("button[name='actualize']").isDisplayed().then(function (res:boolean):boolean {
+                                    return res;
+                                }));
                             break;
                         case "to say I'm in line":
                                 await $("button[name='atLine']");
@@ -124,8 +126,11 @@ defineSupportCode(function ({ Given, When, Then }) {
                     }
                 break;
             case "message":
-                    await $("h2[id='messageTimeOverflow']");
+                    await expect(await $("h2[id='messageTimeOverflow']").isDisplayed());
+                break;
+            case "need":
+                    await browser.restart();
                 break;
         }
     });
-})
+});
