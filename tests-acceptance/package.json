@@ -21,6 +21,7 @@
   "dependencies": {
     "cucumber-html-reporter": "^2.0.0",
     "protractor": "^5.4.1",
+    "selenium": "^2.20.0",
     "ts-node": "^3.1.0",
     "typescript": "^2.2.1"
   }
