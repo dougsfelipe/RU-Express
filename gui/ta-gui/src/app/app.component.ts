@@ -4,8 +4,8 @@ import {NgModule} from '@angular/core';
 
 import {Pessoa} from './pessoa';
 import {CadastroPessoa} from './cadastroPessoa';
-import { CardapioComponent } from './cardapio.component';
-import { Alimento } from './alimento';
+import { CardapioComponent } from './cardapio/cardapio.component';
+import { Alimento } from './cardapio/alimento';
 
 @Component({
   selector: 'app-root',

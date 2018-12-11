@@ -5,4 +5,8 @@ export class Alimento{
         this.nome = "";
         this.tipo="";
     }
+    clean(){
+        this.nome = '';
+        this.tipo = '';
+    }
 }

@@ -4,7 +4,7 @@ import bodyParser = require("body-parser");
 import {Pessoa} from '../../gui/ta-gui/src/app/pessoa';
 import {CadastroPessoa} from './cadastroPessoa';
 import { CadastroAlimentos } from './cadastroAlimentos';
-import { Alimento } from '../../gui/ta-gui/src/app/alimento';
+import { Alimento } from '../../gui/ta-gui/src/app/cardapio/alimento';
 
 var app = express();
 

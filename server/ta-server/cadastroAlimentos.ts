@@ -1,4 +1,4 @@
-import{Alimento} from '../../gui/ta-gui/src/app/alimento';
+import{Alimento} from '../../gui/ta-gui/src/app/cardapio/alimento';
 export class CadastroAlimentos{
     alimentos: Alimento[]=[];
     cadastrar(alimento:Alimento):Alimento{

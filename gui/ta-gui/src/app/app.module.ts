@@ -4,7 +4,7 @@ import { FormsModule} from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import {CardapioComponent} from './cardapio.component';
+import {CardapioComponent} from './cardapio/cardapio.component';
 import {CarteiraComponent} from './carteira.component';
 import {SuporteComponent} from './suporte.component';
 import {SolicitacaoComponent} from './solicitacao.component';

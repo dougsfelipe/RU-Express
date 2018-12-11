@@ -9,6 +9,7 @@ export class CadastroAlimentos{
     private headers = new Headers({'Content-Type': 'application/json'});
     private taURL = 'http://localhost:3000';
     constructor(private http: Http){}
+
     cadastrar(alimento: Alimento, dia:string): Promise<Alimento>{
         return this.http.post(this.taURL + "/alimentos",JSON.stringify({'alimento': alimento, 'dia': dia}), {headers: this.headers})
            .toPromise()
@@ -17,6 +18,7 @@ export class CadastroAlimentos{
            })
            .catch(this.tratarErro); 
     }
+    
     alimentosGetAll():Promise<Alimento[][]>{
         return this.http.get(this.taURL + "/alimentos",)
                  .toPromise()
