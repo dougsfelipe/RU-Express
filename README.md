@@ -18,16 +18,24 @@ __Lucas Aurelio__(lagc)<br>
 <br>
 <br>
 
-1.`git clone https://github.com/dougsfelipe/RU-Express.git`<br>
-2.Entrar na pasta /server/ta-server
-3.No cmd instale as depedencias se necessario  `npm install typescript`
-4.Rode o servidor com `node ta-server.js`
-5.Entrar na pasta /gui/ta-gui<br>
-6.No cmd instale as depedencias se necessario `npm install`<br>
-7.Rode o sistema no cmd `npm start`<br>
-8.Para visualizar acesse `localhost:4200`<br>
-9.Para visualizar acesse `localhost:3000`<br>
-
+1. `git clone https://github.com/dougsfelipe/RU-Express.git`<br>
+2. Entrar na pasta /gui/ta-gui<br>
+3. No cmd instale as depedencias se necessario em `ta-server` `npm install`<br>
+4. No mesmo cmd use `tsc`<br>
+5. Agora use `node ta-server.js`<br>
+6. Em outro cmd abra a pasta `ta-gui` e use `npm install`<br>
+7. Va para a pasta do `app.component.html` e use `npm start`<br>
+8. Para visualizar acesse `localhost:4200`<br>
+9. Para rodar os testes abra um 3º terminal e na pasta `tests-acceptance` use `npm install`<br>
+10. Para garantir use os seguintes comandos:<br>
+11. `npm install protractor`<br>
+12. `npm install cucumber`<br>
+13. `npm install selenium`<br>
+14. Agora use `npm run webdriver-update`<br>
+15. E finalmente `npm run webdriver-start`<br>
+16. Abra outro cmd também na pasta `tests-acceptance` e use `tsc`<br>
+17. Agora para de fato rodar os testes, use: `npm test`<br>
+18. Perceba que para verificar os testes do cardápio, é necessário ir em app.component.ts e remover a linha marcada `loged:boolean=false;//comente para testar`, como também descomentar a linha referente ao loged `//loged:boolean = true;//descomente para testar`.
 
 # Links dos Cenários e Sketches
 

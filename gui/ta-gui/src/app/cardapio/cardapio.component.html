@@ -1,0 +1,98 @@
+<html class="cardapioOrigem" (mousemove)="onMoveCardapio()">
+    <!--estilo do cardapio-->
+    <style>
+        .cardapioOrigem{
+            width: 100%;
+            height: 60vh;
+            margin: 0;
+            padding-top: 20vh
+        }
+        .cardapioTitulo{
+            color: #6FCF97
+        }
+        .cardapioTabela{
+            width: 100%;
+            height: 70%;
+        }
+        .cardapioTabela tr{
+            width: 100%;
+            height: 25%;
+        }
+        .cardapioTErro{
+            color: red;
+        }
+        .cardapioTAcerto{
+            color: green;
+        }
+    </style>
+    <h1 class="cardapioTitulo">Cardápio</h1>
+    <!--dia-->
+    <label>Dia</label>
+    <select name="diaCardapio" id="cardapioDiaSelect" (click)="mudarDia()" [(ngModel)]="oldDia">
+        <option value="seg" name="cSeg">seg</option>
+        <option value="ter" name="cTer">ter</option>
+        <option value="qua" name="cQua">qua</option>
+        <option value="qui" name="cQui">qui</option>
+        <option value="sex" name="cSex">sex</option>
+        <option value="sab" name="cSab">sab</option>
+        <option value="dom" name="cDom">dom</option>
+    </select>
+    
+    <!--formulario dos alimentos-->
+    <form id="cardapioForm"><!--idealmente seria colocada um ngif pessoa.adm, mas como não foi feita essa parte de adm funcionando, não foi utilizado-->
+        <input type="text" placeholder="nome do alimento" name="alimentoNome" [(ngModel)]="alimentoCaR.nome">
+        <label>Tipo</label>
+        <select name="alimentoTipo" id="alimentoTipo" [(ngModel)]="alimentoCaR.tipo">
+                <option value="Desjejum">Desjejum</option>
+                <option value="Almoço">Almoço</option>
+                <option value="Jantar">Jantar</option>
+            </select>
+    </form>
+
+    <button (click)="selectAlimento(alimentoCaR)">Selecionar</button>
+    <button (click)="atualizarAlimento()">Atualizar</button>
+    <button (click)="cadastrarAlimento(alimentoCaR)">Cadastrar</button>
+    <button (click)="removerAlimento()">Remover</button>
+    <!--mensagens de erro-->
+    <h2 class="cardapioTAcerto" *ngIf="cadastrobsAlimento" name="mensagemCardapio">Alimento cadastrado com sucesso</h2>
+    <h2 class="cardapioTErro" *ngIf="erroCadastroAlimento" name="mensagemCardapio">Não foi possível realizar o cadastro</h2>
+    <h2 class="cardapioTAcerto" *ngIf="selAlimento" name="mensagemCardapio">Alimento Selecionado com sucesso</h2>
+    <h2 class="cardapioTErro" *ngIf="erroSelectAlimento" name="mensagemCardapio">Não foi possível selecionar o alimento</h2>
+    <h2 class="cardapioTAcerto" *ngIf="attAlimento" name="mensagemCardapio">Alimento atualizado com sucesso</h2>
+    <h2 class="cardapioTErro" *ngIf="erroAtualizarAlimento" name="mensagemCardapio">Não foi possível Atualizar o alimento</h2>
+    <h2 class="cardapioTAcerto" *ngIf="remAlimento" name="mensagemCardapio">Alimento removido com sucesso</h2>
+    <h2 class="cardapioTErro" *ngIf="erroRemAlimento" name="mensagemCardapio">Não foi possível remover o alimento</h2>
+
+    <!--Tabelas dos dias alimentos-->
+    <th>{{diaCard}}</th>
+    <table class="cardapioTabela">
+        <tr>
+            <th>Tipo do alimento</th>
+            <th>Nome do alimento</th>
+        </tr>
+        <tr>
+            <td>Desjejum</td>
+            <td>
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Desjejum'" name="DesjejumLista">{{comida.nome}}</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Almoço</td>
+            <td>
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Almoço'" name="AlmoçoLista">{{comida.nome}}</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Jantar</td>
+            <td>
+                <div *ngFor="let comida of alimentosShow">
+                    <p *ngIf="comida.tipo == 'Jantar'" name="JantarLista">{{comida.nome}}</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</html>
