@@ -35,7 +35,7 @@ export class SolicitacaoComponent implements OnInit {
 
   async cadastrar(e: Entregador) {
 
-    if (e.cpf != null || e.email != null || e.nome != null || e.telefone != null) {
+    if (this.ConferirVazio(e)) {
 
       let b = await this.cadastroEntregador.cadastrar(e);
       this.entregadores.push(e);
@@ -46,6 +46,14 @@ export class SolicitacaoComponent implements OnInit {
       
 
     }
+  }
+
+  ConferirVazio(e: Entregador):boolean{
+    if(e.cpf != null && e.email != null && e.nome != null && e.telefone != null){
+      return true;
+  }else{
+    return false;
+  }
   }
 
   TelaSolicitacao():void{

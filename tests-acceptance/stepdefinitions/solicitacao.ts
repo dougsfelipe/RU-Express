@@ -38,7 +38,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await samecpfs.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
     });
 
-    Given(/^Eu não posso ver um entregar com nome "(\d*)"na lista de entregadores$/, async (nome) => {
+    Given(/^Eu não posso ver um entregador com nome "(\d*)"na lista de entregadores$/, async (nome) => {
         var allnames: ElementArrayFinder = element.all(by.name('nomelist'));
         await allnames;
         var samecpfs = allnames.filter(elem =>
@@ -89,6 +89,10 @@ defineSupportCode(function ({ Given, When, Then }) {
         await $("input[name='EntregadorCPF']").sendKeys(<string>cpf);
         await $("input[name='EntregadorTelefone']").sendKeys(<string>fone);
         await $("input[name='EntregadorEmail']").sendKeys(<string>mail);
+       
+    });
+
+    When(/^Eu clico no botao de cadastrar entregador"([^\"]*)"$/, async () => {
         await element(by.buttonText('Cadastrar Entregador')).click();
     });
 
