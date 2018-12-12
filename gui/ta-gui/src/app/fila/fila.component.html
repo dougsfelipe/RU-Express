@@ -1,0 +1,47 @@
+<html>
+    <br><br><br><br>
+    <div *ngIf="!modalShow" class="queueMonitoring">
+      <h2 id="messageQueueMonitoring">Monitoramento de Fila</h2>
+
+      <div class="informationDiv">
+        <h3>Tempo médio de espera <strong>agora</strong>:</h3>
+        <span>
+          <p id="waitingTime">{{waitingTime}}</p>
+        </span>
+      </div>
+
+      <div class="informationDiv">
+        <h3>Pessoas na fila <strong>agora</strong>:</h3>
+        <span>
+          <p id="queuePeople">{{queuePeople}}</p>
+        </span>
+      </div>
+
+      <div class="informationDiv">
+        <h3>Melhor horário para se estar <strong>no R.U.</strong>:</h3>
+        <span>
+          <p id="bestTime">{{bestTime}}</p>
+        </span>
+      </div>
+
+      <button class="buttonQueue" (click)="atualizar()" name='actualize'>Atualizar</button>
+      <button class="buttonQueue" *ngIf="!isAtLine" (click)="atQueue()" name="atLine">Estou na fila!</button>
+      <button class="buttonQueue" *ngIf="isAtLine" (click)="notAtQueue()" name="enteredRestaurant">Entrei no R.U.</button>
+      <button class="buttonQueue" *ngIf="isAtLine" (click)="notAtQueue()" name="leavingLine">Saí da fila</button>
+
+    </div>
+
+    <div *ngIf="modalShow" class="modalDialog">
+
+      <h2 id="messageTimeOverflow">Tempo de fila <strong>acabou!</strong></h2>
+
+      <p>O tempo estimado de fila acabou e você ainda está aqui.<br>
+        Lamentamos muito por este erro.<br>
+        Caso você tenha saído da fila e esquecido de marcar ou já tenha entrado no restaurante, nos avise.</p>
+
+      <button class="buttonQueue" (click)="notAtQueueFromDialog()" name="leavingLine">Saí da fila</button>
+      <button class="buttonQueue" (click)="notAtQueueFromDialog()" name="enteredRestaurant">Entrei no restaurante</button>
+      <button class="buttonQueue" (click)="stillInLineFromDialog()" name="atLine">Ainda na fila!</button>
+
+    </div>
+</html>

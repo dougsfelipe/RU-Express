@@ -18,8 +18,7 @@ export let config: Config = {
     ],
 
     onPrepare: () => {
-
-        browser.ignoreSynchronization = true;
+        browser.waitForAngularEnabled(true);
         browser.manage().window().maximize();
 
     },

@@ -5,8 +5,11 @@ import {Pessoa} from '../../gui/ta-gui/src/app/pessoa';
 import {CadastroPessoa} from './cadastroPessoa';
 import { CadastroAlimentos } from './cadastroAlimentos';
 import { Alimento } from '../../gui/ta-gui/src/app/cardapio/alimento';
+import {FilaServerMonitor} from "./fila.server.monitor";
 
 var app = express();
+
+var filaMonitor : FilaServerMonitor = new FilaServerMonitor();
 
 var pessoas: CadastroPessoa = new CadastroPessoa();
 let alimentos:CadastroAlimentos[] = [];
@@ -30,7 +33,7 @@ app.use(bodyParser.json());
 
 app.get('/pessoas', function (req, res) {
   res.send(JSON.stringify(pessoas.getPessoas()));
-})
+});
 
 app.post('/pessoas', function (req: express.Request, res: express.Response) {
   var pessoa: Pessoa = <Pessoa> req.body; //verificar se é mesmo Pessoa!
@@ -40,7 +43,7 @@ app.post('/pessoas', function (req: express.Request, res: express.Response) {
   } else {
     res.send({"failure": "O cadastro não pode ser efetivado"});
   }
-})
+});
 
 //os alimentos
 app.get('/alimentos', function (req, res) {
@@ -79,6 +82,12 @@ app.delete('/alimentos',function(req: express.Request, res: express.Response) {
 })
 app.listen(3000, function () {
   console.log('Servidor na porta 3000!')
-})
+});
+
+//PARTE DESTINADA AO MONITORAMENTO DE FILA
+app.get('/monitoramentoFila', function (req, res) {
+    res.send(JSON.stringify(filaMonitor.getDataQueue()));
+});
+
 
 export { app }
