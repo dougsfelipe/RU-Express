@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Solicitacao } from './solicitacao';
 import { Entregador } from './Entregador';
 import { CadastroEntregador } from './cadastroEntregador';
+import { cadastroQuentinha } from './cadastroQuentinha';
 
 
 
@@ -31,7 +32,8 @@ export class SolicitacaoComponent implements OnInit {
   solicitacao: Solicitacao = new Solicitacao();
 
   solicitacaoes: Solicitacao[];
-  constructor(private cadastroEntregador: CadastroEntregador) { }
+  constructor(private cadastroEntregador: CadastroEntregador) { };
+
 
   async cadastrar(e: Entregador) {
 
@@ -47,6 +49,17 @@ export class SolicitacaoComponent implements OnInit {
 
     }
   }
+
+
+  async solicitar(s: Solicitacao) {
+
+    
+
+      
+
+    
+  }
+
 
   ConferirVazio(e: Entregador):boolean{
     if(e.cpf != null && e.email != null && e.nome != null && e.telefone != null){
