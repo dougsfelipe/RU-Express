@@ -47,6 +47,20 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('Cadastrar')).click();
     });
 
+    When(/^Eu tento remover um alimento chamado "([^\"]*)" com tipo "([^\"]*)"$/, async(nome, tipo)=>{
+        await $("input[name='alimentoNome']").sendKeys(<string> nome);
+        let sel = "#alimentoTipo option[value="+tipo+"]";
+        await $(sel).click();
+        await element(by.buttonText('Remover')).click();
+    });
+
+    When(/^Eu tento selecionar um alimento chamado "([^\"]*)" com tipo "([^\"]*)"$/, async(nome, tipo)=>{
+        await $("input[name='alimentoNome']").sendKeys(<string> nome);
+        let sel = "#alimentoTipo option[value="+tipo+"]";
+        await $(sel).click();
+        await element(by.buttonText('Selecionar')).click();
+    });
+
     Then(/^Eu recebo uma mensagem de "([^\"]*)"$/, async(mensagem)=>{
         let allMSG : ElementArrayFinder = element.all(by.name('mensagemCardapio'));
         await allMSG;

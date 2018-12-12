@@ -50,12 +50,19 @@
     </form>
 
     <button (click)="selectAlimento(alimentoCaR)">Selecionar</button>
+    <button (click)="atualizarAlimento()">Atualizar</button>
     <button (click)="cadastrarAlimento(alimentoCaR)">Cadastrar</button>
-
+    <button (click)="removerAlimento()">Remover</button>
     <!--mensagens de erro-->
-    <h2 class="cardapioTErro" *ngIf="erroCadastroAlimento" name="mensagemCardapio">Não foi possível realizar o cadastro</h2>
-    <h2 class="cardapioTErro" *ngIf="erroSelectAlimento || erroAtualizarAlimento" name="mensagemCardapio">Não foi possível selecionar o alimento</h2>
     <h2 class="cardapioTAcerto" *ngIf="cadastrobsAlimento" name="mensagemCardapio">Alimento cadastrado com sucesso</h2>
+    <h2 class="cardapioTErro" *ngIf="erroCadastroAlimento" name="mensagemCardapio">Não foi possível realizar o cadastro</h2>
+    <h2 class="cardapioTAcerto" *ngIf="selAlimento" name="mensagemCardapio">Alimento Selecionado com sucesso</h2>
+    <h2 class="cardapioTErro" *ngIf="erroSelectAlimento" name="mensagemCardapio">Não foi possível selecionar o alimento</h2>
+    <h2 class="cardapioTAcerto" *ngIf="attAlimento" name="mensagemCardapio">Alimento atualizado com sucesso</h2>
+    <h2 class="cardapioTErro" *ngIf="erroAtualizarAlimento" name="mensagemCardapio">Não foi possível Atualizar o alimento</h2>
+    <h2 class="cardapioTAcerto" *ngIf="remAlimento" name="mensagemCardapio">Alimento removido com sucesso</h2>
+    <h2 class="cardapioTErro" *ngIf="erroRemAlimento" name="mensagemCardapio">Não foi possível remover o alimento</h2>
+
     <!--Tabelas dos dias alimentos-->
     <th>{{diaCard}}</th>
     <table class="cardapioTabela">

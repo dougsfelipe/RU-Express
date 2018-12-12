@@ -10,10 +10,15 @@ import { Http, Headers } from '@angular/http';
 export class CardapioComponent implements OnInit{
     alimentosShow:Alimento[] = [];//alimentos para aparecer no html, escolhidos pelo dia
     alimentoCaR:Alimento = new Alimento();//alimento para cadastro do form
+    alimentoSelect:Alimento = new Alimento();//alimento selecionado
     erroCadastroAlimento:boolean;//erro no cadastro
     erroSelectAlimento:boolean;//erro ao selecionar alimento
     erroAtualizarAlimento:boolean;//erro ao atualizar o alimento
     cadastrobsAlimento:boolean;//cadastro efetivado do alimento
+    attAlimento:boolean;//se o alimento consegiu ser atualizado
+    selAlimento:boolean;//se o alimento conseguiu ser selecionado
+    remAlimento:boolean;//se o alimento foi removido
+    erroRemAlimento:boolean;//se o alimento não foi removido
     diaCard:string = 'seg';//dia atual
     oldDia:string = 'seg';//dia antes da mudança
     dias:string[] = ['seg','ter', 'qua', 'qui', 'sex', 'sab', 'dom'];//array dos dias
@@ -34,12 +39,18 @@ export class CardapioComponent implements OnInit{
     onMoveCardapio(){//ao mover o mouse
         this.setEFC();
     }
-    
+    atualizarAlimento(){
+
+    }
     private setEFC(){//set as mensagens de efeito para falso
         this.erroCadastroAlimento=false;
         this.erroSelectAlimento = false;
         this.erroAtualizarAlimento = false;
         this.cadastrobsAlimento=false;
+        this.selAlimento = false;
+        this.attAlimento = false;
+        this.erroRemAlimento = false;
+        this.remAlimento = false;
     }
 
     async cadastrarAlimento(alimento:Alimento){//cadastro de alimentos
@@ -56,12 +67,44 @@ export class CardapioComponent implements OnInit{
             this.erroCadastroAlimento = true;
         }
     }
-    selectAlimento(alimento:Alimento){//função que lida com o select dos alimentos
+    async removerAlimento(){
+        if(this.verificarNVazioAlimento(this.alimentoSelect)){
+            let removeu = await this.cardapios[this.diaCard].removerAL(this.alimentoSelect, this.diaCard);
+            if(removeu){
+                this.getAllAlimentos();
+                this.remAlimento = true;
+            }else{
+                this.erroRemAlimento = true;
+            }
+            this.alimentoSelect.clean();
+        }else{
+            this.erroRemAlimento = true;
+        }
+    }
+
+    async getAlimento(alimento:Alimento):Promise<boolean>{
+        await this.getAllAlimentos().catch();
+        for (let alimentor of this.alimentosShow){
+            if(alimento.nome==alimentor.nome && alimento.tipo == alimentor.tipo)
+                return true;
+        }
+        return false;
+    }
+    async selectAlimento(alimento:Alimento){//função que lida com o select dos alimentos
         //falta concluir
         if(this.verificarNVazioAlimento(alimento)){
             this.erroSelectAlimento = false;
+            this.alimentoSelect= alimento;
+            let selecionado = await this.getAlimento(this.alimentoSelect);
+            if(selecionado){
+                this.selAlimento = true;
+            }else{
+                this.erroSelectAlimento = true;
+                this.alimentoSelect['alimento'].clean();
+            }
         }else{
             this.erroSelectAlimento = true;
+            this.alimentoSelect['alimento'].clean();
         }
     }
     verificarNVazioAlimento(alimento:Alimento):boolean{//verifica se o alimento para cadastro n é vazio

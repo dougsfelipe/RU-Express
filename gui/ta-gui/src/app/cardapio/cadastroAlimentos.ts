@@ -20,7 +20,7 @@ export class CadastroAlimentos{
     }
     
     alimentosGetAll():Promise<Alimento[][]>{
-        return this.http.get(this.taURL + "/alimentos",)
+        return this.http.get(this.taURL + "/alimentos")
                  .toPromise()
                  .then(res => {
                         let retorno:Alimento[][] = [];
@@ -31,7 +31,14 @@ export class CadastroAlimentos{
                     })
                  .catch(this.tratarErro);
     }
-
+    removerAL(alimento:Alimento, dia:string):Promise<boolean>{
+        return this.http.delete(this.taURL + "/alimentos", JSON.stringify({'alimento': alimento, 'dia': dia}))
+           .toPromise()
+           .then(res => {
+              if (res.json().success) {return true;} else {return false;}
+           })
+           .catch(this.tratarErro); 
+    }
     private tratarErro(erro: any): Promise<any>{//trata erro de acesso ao servidor
         console.error('Acesso mal sucedido ao servidor',erro);
         return Promise.reject(erro.message || erro);

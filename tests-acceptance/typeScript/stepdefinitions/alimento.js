@@ -19,8 +19,50 @@ cucumber_1.defineSupportCode(function ({ Given, When, Then }) {
         yield expect(protractor_1.browser.getTitle()).to.eventually.equal('RU Express');
         yield protractor_1.$("a[name='cardapioNav']").click();
     }));
-    When('', () => __awaiter(this, void 0, void 0, function* () {
+    Given(/^Estou com dia "([^\"]*)" selecionado$/, (dia) => __awaiter(this, void 0, void 0, function* () {
+        let sel = "#cardapioDiaSelect option[value=" + dia + "]";
+        yield protractor_1.$(sel).click();
     }));
-    Then('', () => __awaiter(this, void 0, void 0, function* () {
+    Given(/^Não posso ver um alimento chamado "([^\"]*)" com tipo "([^\"]*)"$/, (nome, tipo) => __awaiter(this, void 0, void 0, function* () {
+        let findName = tipo + "Lista";
+        let allNomes = protractor_1.element.all(protractor_1.by.name(findName));
+        yield allNomes;
+        let sameNomes = allNomes.filter(elem => elem.getText().then(text => text === nome));
+        yield sameNomes;
+        yield sameNomes.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
+    }));
+    Given(/^Posso ver um alimento chamado "([^\"]*)" com tipo "([^\"]*)" cadastrado$/, (nome, tipo) => __awaiter(this, void 0, void 0, function* () {
+        //se já estiver cadastrado não fará diferença, mas para garantir que está, é feito o cadastro.
+        yield protractor_1.$("input[name='alimentoNome']").sendKeys(nome);
+        let sel = "#alimentoTipo option[value=" + tipo + "]";
+        yield protractor_1.$(sel).click();
+        yield protractor_1.element(protractor_1.by.buttonText('Cadastrar')).click();
+        let findName = tipo + "Lista";
+        let allNomes = protractor_1.element.all(protractor_1.by.name(findName));
+        yield allNomes;
+        let sameNomes = allNomes.filter(elem => elem.getText().then(text => text === nome));
+        yield sameNomes;
+        yield sameNomes.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    }));
+    When(/^Eu tento cadastrar um alimento chamado "([^\"]*)" com tipo "([^\"]*)"$/, (nome, tipo) => __awaiter(this, void 0, void 0, function* () {
+        yield protractor_1.$("input[name='alimentoNome']").sendKeys(nome);
+        let sel = "#alimentoTipo option[value=" + tipo + "]";
+        yield protractor_1.$(sel).click();
+        yield protractor_1.element(protractor_1.by.buttonText('Cadastrar')).click();
+    }));
+    Then(/^Eu recebo uma mensagem de "([^\"]*)"$/, (mensagem) => __awaiter(this, void 0, void 0, function* () {
+        let allMSG = protractor_1.element.all(protractor_1.by.name('mensagemCardapio'));
+        yield allMSG;
+        let sameMSG = allMSG.filter(elem => elem.getText().then(text => text === mensagem));
+        yield sameMSG;
+        yield sameMSG.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    }));
+    Then(/^Posso ver o alimento "([^\"]*)" na lista de alimentos oferecidos para "([^\"]*)"$/, (nome, tipo) => __awaiter(this, void 0, void 0, function* () {
+        let findName = tipo + "Lista";
+        let allNomes = protractor_1.element.all(protractor_1.by.name(findName));
+        yield allNomes;
+        let sameNomes = allNomes.filter(elem => elem.getText().then(text => text === nome));
+        yield sameNomes;
+        yield sameNomes.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     }));
 });

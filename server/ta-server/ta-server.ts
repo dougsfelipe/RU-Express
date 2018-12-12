@@ -64,6 +64,19 @@ app.post('/alimentos', function (req: express.Request, res: express.Response) {
   }
 })
 
+app.delete('/alimentos',function(req: express.Request, res: express.Response) {
+  /*
+  let dia=req.body['dia'];//necessario receber como parametro
+  let alimento: Alimento = <Alimento> req.body['alimento']; //verificar se é mesmo alimento!
+  console.log(dia,alimento);
+  let removeu = alimentos[dia].remover(alimento);
+  */
+  if (true) {
+    res.send({"success": "remoção bem sucedida"});
+  } else {
+    res.send({"failure": "A remoção não pode ser efetivado"});
+  }
+})
 app.listen(3000, function () {
   console.log('Servidor na porta 3000!')
 })
