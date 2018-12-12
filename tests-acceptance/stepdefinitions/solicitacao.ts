@@ -53,7 +53,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await quentinhas;
         var sameHour = quentinhas.filter(elem => elem.getText().then(text => text === hour));
         await sameHour;
-        await sameHour.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1)
+        await sameHour.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
 
     });
 
