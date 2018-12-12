@@ -11,8 +11,9 @@
     "@types/body-parser": "^1.16.5",
     "@types/express": "^4.0.37",
 
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.4",
+    "typescript": "^3.2.2"
 
   },
   "devDependencies": {

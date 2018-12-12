@@ -2,6 +2,8 @@
 import { Component } from '@angular/core';
 import {Pessoa} from './pessoa';
 import {CadastroPessoa} from './cadastroPessoa';
+import { CardapioComponent } from './cardapio/cardapio.component';
+import { Alimento } from './cardapio/alimento';
 
 
 @Component({
@@ -12,14 +14,17 @@ import {CadastroPessoa} from './cadastroPessoa';
 export class AppComponent {
   title = 'ta-gui';
   pessoa:Pessoa= new Pessoa();
-  loged:boolean=false;// boleado se fala se o usuaria ta log
+  loged:boolean=false;//comente para testar
+  //loged:boolean = true;//descomente para testar
   tela:boolean=false;//boleano para mudar entre a tela de login(true) e de cadastro(false)
   erroCadastro:boolean=false;
   cadastroEfetivado:boolean=false;
   pessoaLogada:Pessoa=new Pessoa;
   loginInvalido:boolean=false;
-  constructor(private cadastroPessoa: CadastroPessoa){}
   
+  constructor(private cadastroPessoa: CadastroPessoa){
+  }
+
   async login(){
     var a:boolean= await this.cadastroPessoa.login(this.pessoa.cpf,this.pessoa.senha);
     if (a){
@@ -65,4 +70,6 @@ export class AppComponent {
     }
     return true;
 }
+
+
 }

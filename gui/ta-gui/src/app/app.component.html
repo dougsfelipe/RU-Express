@@ -4,10 +4,10 @@
 
   <nav class="topnav">
 
-    <a class="topnavitem" *ngIf="loged">{{pessoaLogada.nome}}</a>
+    <a class="topnavitem" *ngIf="loged">
+      <br>{{pessoaLogada.nome}}</a>
+    <a class="topnavitem" routerLink="/cardapio" name="cardapioNav">Cardapio</a>
     <a class="topnavitem" routerLink="/fila" id="fila">Fila</a>
-
-    <a class="topnavitem" routerLink="/cardapio">Cardapio</a>
     <a class="topnavitem" routerLink="/solicitacao">Solicitacao</a>
     <a class="topnavitem" routerLink="/carteira">Carteira</a>
     <a class="topnavitem" routerLink="/suporte">Suporte</a>
