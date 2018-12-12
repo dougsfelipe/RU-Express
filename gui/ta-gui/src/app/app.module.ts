@@ -4,6 +4,7 @@ import { FormsModule} from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import {FilaComponent} from "./fila/fila.component";
 import {CardapioComponent} from './cardapio.component';
 import {CarteiraComponent} from './carteira.component';
 import {SuporteComponent} from './suporte.component';
@@ -11,12 +12,13 @@ import {SolicitacaoComponent} from './solicitacao.component';
 import { HttpModule } from '@angular/http';
 import { CadastroPessoa } from './cadastroPessoa';
 import {CadastroEntregador} from './cadastroEntregador';
-
+import {FilaCommunicator} from "./fila/fila.communicator";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FilaComponent,
     CardapioComponent,
     CarteiraComponent,
     SolicitacaoComponent,
@@ -31,6 +33,10 @@ import {CadastroEntregador} from './cadastroEntregador';
     HttpModule, 
     RouterModule.forRoot([
       {
+      path:'fila',
+      component:FilaComponent
+    },
+    {
       path:'cardapio',
       component:CardapioComponent
     },
@@ -46,7 +52,10 @@ import {CadastroEntregador} from './cadastroEntregador';
       component:SuporteComponent
     }
     ])  ],
-  providers: [CadastroPessoa,CadastroEntregador],
+
+  providers: [CadastroPessoa,
+              FilaCommunicator,CadastroEntregador],
+
   bootstrap: [AppComponent]
   
 })

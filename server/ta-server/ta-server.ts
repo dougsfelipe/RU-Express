@@ -7,8 +7,12 @@ import {CadastroPessoa} from './cadastroPessoa';
 import {CadastroEntregador} from './cadastroEntregador';
 import {Solicitacao} from '../../gui/ta-gui/src/app/solicitacao';
 import { CadastroSolicitacao } from './CadastroSolicitacao';
+import {FilaServerMonitor} from "./fila.server.monitor";
+
 
 var app = express();
+
+var filaMonitor : FilaServerMonitor = new FilaServerMonitor();
 
 var pessoas: CadastroPessoa = new CadastroPessoa();
 var entregadores: CadastroEntregador = new CadastroEntregador();
@@ -26,7 +30,7 @@ app.use(bodyParser.json());
 
 app.get('/pessoas', function (req, res) {
   res.send(JSON.stringify(pessoas.getPessoas()));
-})
+});
 
 
 
@@ -38,7 +42,7 @@ app.post('/pessoas', function (req: express.Request, res: express.Response) {
   } else {
     res.send({"failure": "O cadastro não pode ser efetivado"});
   }
-})
+});
 
 //Cadastro de entregador
 
@@ -72,6 +76,12 @@ app.get('/solicitacoes', function (req, res) {
 
 app.listen(3000, function () {
   console.log('Servidor na porta 3000!')
-})
+});
+
+//PARTE DESTINADA AO MONITORAMENTO DE FILA
+app.get('/monitoramentoFila', function (req, res) {
+    res.send(JSON.stringify(filaMonitor.getDataQueue()));
+});
+
 
 export { app }
