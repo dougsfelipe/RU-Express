@@ -22,7 +22,7 @@
     <h4>Escolha o seu tipo de refeição</h4>
 
 
-    <select [(ngModel)]="solicitacao.Tipo" name="SelTipo">
+    <select name="SelTipo">
         <option value="" disabled selected>Selecione seu tipo</option>
         <option value="Almoco">Almoço</option>
         <option value="Desjejum">Desjejum</option>
@@ -33,7 +33,7 @@
 
     <h4>Escolhe a sua refeição</h4>
 
-    <select [(ngModel)]="solicitacao.Refeicao" name="SelRef">
+    <select  name="SelRef">
         <option value="" disabled selected>Selecione sua refeição</option>
         <option value="Salcicha">Salsicha</option>
         <option value="Lasanha">Lasanha</option>
@@ -46,7 +46,7 @@
     <h4>Escolha o centro de entrega</h4>
 
 
-    <select [(ngModel)]="solicitacao.Local" name="SelCentro">
+    <select  name="SelCentro">
         <option value="" disabled selected>Selecione sua entrega</option>
         <option value="cin">Cin</option>
         <option value="cac">CAC</option>
@@ -57,7 +57,7 @@
     </select>
     <br>
 
-    <button name="Solicitar" (click)="cadastrarQuentinha(Solicitacao)">Solicitar</button>
+    <button name="Solicitar">Solicitar</button>
 
 
 </div>

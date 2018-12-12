@@ -5,11 +5,14 @@ import {Pessoa} from '../../gui/ta-gui/src/app/pessoa';
 import {Entregador} from '../../gui/ta-gui/src/app/Entregador';
 import {CadastroPessoa} from './cadastroPessoa';
 import {CadastroEntregador} from './cadastroEntregador';
+import {Solicitacao} from '../../gui/ta-gui/src/app/solicitacao';
+import { CadastroSolicitacao } from './CadastroSolicitacao';
 
 var app = express();
 
 var pessoas: CadastroPessoa = new CadastroPessoa();
 var entregadores: CadastroEntregador = new CadastroEntregador();
+var solicitacaos: CadastroSolicitacao = new CadastroSolicitacao();
 
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
@@ -49,8 +52,22 @@ app.post('/entregador', function (req: express.Request, res: express.Response) {
   }
 })
 
+app.post('/solicitacoes', function (req: express.Request, res: express.Response) {
+  var solicitacao: Solicitacao = <Solicitacao> req.body; //verificar se é mesmo Pessoa!
+  solicitacao = solicitacaos.solicitar(solicitacao);
+  if (solicitacao) {
+    res.send({"success": "Cadastro bem sucedido"});
+  } else {
+    res.send({"failure": "O cadastro não pode ser efetivado"});
+  }
+})
+
 app.get('/entregador', function (req, res) {
   res.send(JSON.stringify(entregadores.getEntregadores()));
+})
+
+app.get('/solicitacoes', function (req, res) {
+  res.send(JSON.stringify(solicitacaos.getSolicitacoes()));
 })
 
 app.listen(3000, function () {

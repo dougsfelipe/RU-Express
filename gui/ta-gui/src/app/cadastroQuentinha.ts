@@ -9,7 +9,7 @@ export class cadastroQuentinha{
     private headers = new Headers({'Content-Type': 'application/json'});
     private taURL = 'http://localhost:3000';
     constructor(private http: Http){}
-    cadastrar(solicitacao:Solicitacao):Promise<Solicitacao>{
+    solicitar(solicitacao:Solicitacao):Promise<Solicitacao>{
         return this.http.post(this.taURL + "/solicitacao",JSON.stringify(solicitacao), {headers: this.headers})
            .toPromise()
            .then(res => {

@@ -54,7 +54,10 @@ export class SolicitacaoComponent implements OnInit {
   async solicitar(s: Solicitacao) {
 
     
-
+    let c = await this.cadastroEntregador.solicitar(s);
+      this.solicitacaoes.push(s);
+      this.solicitacao.clean();
+      
       
 
     

@@ -1,4 +1,5 @@
 import{Entregador} from './Entregador';
+import{Solicitacao} from './solicitacao';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs';
@@ -14,6 +15,15 @@ export class CadastroEntregador{
            .toPromise()
            .then(res => {
               if (res.json().success) {return entregador as Entregador;} else {return null;}
+           })
+           .catch(this.tratarErro);  
+    }
+
+    solicitar(solicitacao:Solicitacao):Promise<Solicitacao>{
+        return this.http.post(this.taURL + "/solicitacaos",JSON.stringify(solicitacao), {headers: this.headers})
+           .toPromise()
+           .then(res => {
+              if (res.json().success) {return solicitacao as Solicitacao;} else {return null;}
            })
            .catch(this.tratarErro);  
     }

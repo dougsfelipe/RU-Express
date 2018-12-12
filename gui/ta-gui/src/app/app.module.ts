@@ -13,6 +13,7 @@ import { CadastroPessoa } from './cadastroPessoa';
 import {CadastroEntregador} from './cadastroEntregador';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
