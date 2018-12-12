@@ -11,7 +11,9 @@ import {SuporteComponent} from './suporte.component';
 import {SolicitacaoComponent} from './solicitacao.component';
 import { HttpModule } from '@angular/http';
 import { CadastroPessoa } from './cadastroPessoa';
+import {CadastroEntregador} from './cadastroEntregador';
 import {FilaCommunicator} from "./fila/fila.communicator";
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {FilaCommunicator} from "./fila/fila.communicator";
     CardapioComponent,
     CarteiraComponent,
     SolicitacaoComponent,
-    SuporteComponent
+    SuporteComponent,
+    SolicitacaoComponent,
 
     
   ],
@@ -49,9 +52,12 @@ import {FilaCommunicator} from "./fila/fila.communicator";
       component:SuporteComponent
     }
     ])  ],
+
   providers: [CadastroPessoa,
-              FilaCommunicator],
+              FilaCommunicator,CadastroEntregador],
+
   bootstrap: [AppComponent]
+  
 })
 
 

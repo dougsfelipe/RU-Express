@@ -1,0 +1,83 @@
+ 
+ 
+ select{
+      width: 20%;
+      border: none;
+      -webkit-appearance: none;
+      border-bottom: solid 2px #4CAF50;
+      margin-top: 20px;
+      background-color: transparent;
+      margin-bottom: 1%;
+      
+  }
+
+  input[type=submit]:hover {
+    background-color: #45a049;
+    }
+
+    .formulario{
+       justify-content: center;
+       display: flex;
+    }
+
+  input{
+    background-color: transparent;
+    border: none;
+    border-bottom: #4CAF50 2px solid;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: center;
+    margin-left: 35%;
+    margin-top: 2%;
+  }
+
+  input[_ngcontent-c0]{
+      margin-top: 20px;
+      width: 120%;
+  }
+
+
+  button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 25%;
+    margin-top: 20px;
+}
+
+  input:focus,select:focus {
+    box-shadow: 0 0 0 0;
+    border-bottom:solid 2px darkgreen;
+    outline: 0;
+}  
+
+.centro{
+  justify-content: center;
+  display: inline-flex;
+      text-align: center;
+
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

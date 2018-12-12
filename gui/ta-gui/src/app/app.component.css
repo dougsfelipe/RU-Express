@@ -8,7 +8,8 @@ body{
     background-color: lightgray;
     font-family: 'Roboto', sans-serif;
     width: 100%;
-    height: 100vh;
+    height: 130vh;
+    text-align: center;
 }
 
 /* Começo do css da navbar*/

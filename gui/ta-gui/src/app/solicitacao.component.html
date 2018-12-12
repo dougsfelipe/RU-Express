@@ -1,5 +1,108 @@
-<html>
-    <br><br><br><br><br><br>
-<h1>Implementacao da solicittacao de quentinha</h1>    
+<html (mousemove)="onMove()">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="butoes">
+
+    <button (click)="TelaSolicitacao()">Solicitação de Quentinhas</button>
+    <BR>
+    <button (click)="TelaCadastro()">Cadastramento de Entregadores</button>
+
+</div>
+<div class="telaSolicitacao" *ngIf="!telaSolicitacao">
+
+    <h1>Solicitacao de Quentinha</h1>
+
+
+    <h4>Escolha o seu tipo de refeição</h4>
+
+
+    <select name="SelTipo">
+        <option value="" disabled selected>Selecione seu tipo</option>
+        <option value="Almoco">Almoço</option>
+        <option value="Desjejum">Desjejum</option>
+        <option value="Jantar">Jantar</option>
+    </select>
+
+
+
+    <h4>Escolhe a sua refeição</h4>
+
+    <select  name="SelRef">
+        <option value="" disabled selected>Selecione sua refeição</option>
+        <option value="Salcicha">Salsicha</option>
+        <option value="Lasanha">Lasanha</option>
+        <option value="Frango Assado">Frango Assado</option>
+        <option value="Legumes Refogado">Legumes Refogado</option>
+        <option value="Cuzcuz">Cuzcuz</option>
+        <option value="Torta de carne">Torta de carne</option>
+    </select>
+
+    <h4>Escolha o centro de entrega</h4>
+
+
+    <select  name="SelCentro">
+        <option value="" disabled selected>Selecione sua entrega</option>
+        <option value="cin">Cin</option>
+        <option value="cac">CAC</option>
+        <option value="ccen">CCEN</option>
+        <option value="cfch">CFCH</option>
+        <option value="ctg">CTG</option>
+        <option value="ccs">CCS</option>
+    </select>
+    <br>
+
+    <button name="Solicitar">Solicitar</button>
+
+
+</div>
+<div class="telaCadastro" *ngIf="!telaCadastro">
+
+    <h1>Cadastro de Entregador</h1>
+
+    <form action="cadastrar(Entregador)">
+        <input [(ngModel)]="Entregador.nome" name="EntregadorNome" type="text" placeholder="Digite o nome do Entregador*" required>
+
+        <input [(ngModel)]="Entregador.cpf" name="EntregadorCPF" type="text" placeholder="Digite o cpf do Entregador*" required>
+
+        <input [(ngModel)]="Entregador.telefone" name="EntregadorTelefone" type="text" placeholder="Digite o telefone do Entregador*"
+            required>
+
+        <input [(ngModel)]="Entregador.email" name="EntregadorEmail" type="text" placeholder="Digite o email do Entregador*" required>
+
+        <br>
+        <button name="CadastrarEntregador" type="submit" (click)="cadastrar(Entregador)">Cadastrar Entregador</button>
+
+    </form>
+
+    <h2>Lista de Entregadores</h2>
+    <br>
+    <table>
+
+
+        <tr *ngIf="entregadores.length > 0">
+
+
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+        </tr>
+        <tr *ngFor="let a of entregadores" name="entregadoresList">
+            <td name="nomelist">{{a.nome}}</td>
+            <td name="cpflist">{{a.cpf}}</td>
+            <td name="emailist">{{a.email}}</td>
+            <td name="telefonelist">{{a.telefone}}</td>
+        </tr>
+    </table>
+</div>
+
+
+
 
 </html>
